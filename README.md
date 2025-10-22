@@ -65,6 +65,30 @@ To publish via GitHub Actions:
 
 ## 🎯 Repository Purpose
 
+## 🖥️ Run the ReasonOps Web App + API
+
+Backend API (FastAPI):
+
+```bash
+# From repo root
+"C:/Program Files/Python311/python.exe" -m pip install -r api/requirements.txt
+"C:/Program Files/Python311/python.exe" -m uvicorn api.main:app --reload --port 8000
+```
+
+Frontend (Vite + React + TS):
+
+```bash
+cd webapp
+npm install
+npm run dev
+# open http://localhost:5173
+```
+
+Notes:
+- Dev proxy is configured in `webapp/vite.config.ts` to forward `/api` to `http://localhost:8000`.
+- If you deploy the API elsewhere, set `VITE_API_BASE_URL` to that origin.
+- The UI has a built-in mock fallback for all endpoints if the API is temporarily unavailable (see `src/services/mock.ts`).
+
 - **Complete ITIL 4 Framework**: All 34 practices, Service Value System, and governance
 - **Practical Implementation**: Real-world guidance and tools for organizations
 - **ServiceNow Integration**: Platform-specific examples and configurations

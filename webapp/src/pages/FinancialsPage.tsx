@@ -1,10 +1,12 @@
 import { useState } from 'react'
 import { api } from '../services/api'
+import { useToast } from '../components/Toast'
 
 export default function FinancialsPage() {
   const [result, setResult] = useState<any>(null)
   const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
+  const toast = useToast()
 
   const applyPenalties = async () => {
     setLoading(true)
@@ -12,6 +14,7 @@ export default function FinancialsPage() {
     try {
       const r = await api.financial.applyPenalties()
       setResult(r)
+      toast.push('Penalties applied', 'success')
     } catch (err) { setError(String(err)) }
     finally { setLoading(false) }
   }
@@ -22,6 +25,7 @@ export default function FinancialsPage() {
     try {
       const r = await api.financial.applyChargeback()
       setResult(r)
+      toast.push('Chargeback applied', 'success')
     } catch (err) { setError(String(err)) }
     finally { setLoading(false) }
   }
