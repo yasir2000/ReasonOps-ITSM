@@ -12,6 +12,7 @@ import LoginPage from './pages/LoginPage'
 import './styles.css'
 import { ToastProvider } from './components/Toast'
 import { AuthProvider, useAuth } from './auth/AuthContext'
+import { ErrorBoundary } from './components/ErrorBoundary'
 
 function Protected({ children, role }: { children: JSX.Element; role?: string }) {
   const auth = useAuth()
@@ -38,10 +39,12 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <AuthProvider>
-      <ToastProvider>
-        <RouterProvider router={router} />
-      </ToastProvider>
-    </AuthProvider>
+    <ErrorBoundary>
+      <AuthProvider>
+        <ToastProvider>
+          <RouterProvider router={router} />
+        </ToastProvider>
+      </AuthProvider>
+    </ErrorBoundary>
   </React.StrictMode>
 )

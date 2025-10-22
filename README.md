@@ -215,7 +215,34 @@ curl http://localhost:8000/api/agents/providers
 
 ### Web UI Agent Dashboard
 
-Access the agent management interface at http://localhost:5173/agents
+The web interface provides a comprehensive dashboard for managing AI agents:
+
+#### Features
+- **🎨 Modern Design**: Complete UI overhaul with dark theme and smooth animations
+- **📱 Responsive**: Mobile-friendly with adaptive sidebar and touch controls
+- **⚡ Real-time Updates**: Auto-refresh every 30s with loading skeletons
+- **📊 Rich Visualizations**: Metric cards with status indicators and trends
+- **🎯 Role-based Access**: Dynamic navigation based on user permissions
+- **🛡️ Error Boundaries**: Graceful error handling with retry functionality
+- **♿ Accessibility**: WCAG compliant with keyboard navigation support
+
+#### Dashboard Sections
+- **Metrics Overview**: Services, offerings, availability, penalties
+- **Service Level Metrics**: Incidents, response time, MTTR
+- **Suppliers**: Status tracking with color-coded badges
+- **Security Status**: Vulnerabilities, compliance, audit history
+- **Financial Summary**: Cost, revenue, profit margin analysis
+
+#### Technical Highlights
+- 700+ lines of modern CSS with design tokens
+- Loading skeletons for better UX
+- Toast notifications for user feedback
+- Mobile menu with smooth animations
+- Error boundary for crash protection
+
+**Documentation**: See [WEBAPP_OPTIMIZATION.md](WEBAPP_OPTIMIZATION.md) for complete details
+
+Access the dashboard at `http://localhost:5173/agents` (requires `ops` role)
 
 Features:
 - **LLM Provider Configuration**: Select and configure Ollama, OpenAI, or other providers
