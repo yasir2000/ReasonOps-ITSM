@@ -32,6 +32,37 @@ Notes:
 - The SDK expects the underlying framework modules (e.g., `integration/orchestrator.py`) to be available in the Python path when executing.
 - If you’re running directly from this repository, run Python from the repo root so relative imports work.
 
+## 📦 Build and Publish the SDK
+
+### Build locally
+
+```bash
+# Ensure build tooling is installed
+python -m pip install --upgrade pip
+pip install build
+
+# Build wheel and sdist into ./dist
+python -m build
+```
+
+### Run tests locally
+
+```bash
+pip install pytest
+python -m pytest -q
+```
+
+### GitHub Actions CI
+
+This repo includes `.github/workflows/sdk-ci.yml` which:
+- Runs tests on push/PR
+- Builds distribution artifacts and uploads them as workflow artifacts
+- Optionally publishes to PyPI when a GitHub Release is published and `PYPI_API_TOKEN` secret is set
+
+To publish via GitHub Actions:
+1. Add repository secret `PYPI_API_TOKEN` (a PyPI API token).
+2. Create a GitHub Release (tag should match the desired version in `pyproject.toml`).
+
 ## 🎯 Repository Purpose
 
 - **Complete ITIL 4 Framework**: All 34 practices, Service Value System, and governance
