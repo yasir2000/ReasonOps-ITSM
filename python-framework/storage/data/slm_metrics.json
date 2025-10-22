@@ -1,0 +1,14 @@
+[
+  {
+    "timestamp": "2025-10-22T12:09:58.966220",
+    "service": "Customer Portal",
+    "metric": "availability_adjusted",
+    "value": 95.83333333333334
+  },
+  {
+    "timestamp": "2025-10-22T12:10:20.198248",
+    "service": "Customer Portal",
+    "metric": "availability_adjusted",
+    "value": 100.0
+  }
+]
