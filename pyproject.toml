@@ -31,3 +31,4 @@ packages = ["reasonops_sdk"]
 [tool.pytest.ini_options]
 addopts = "-q"
 pythonpath = ["."]
+testpaths = ["tests"]
