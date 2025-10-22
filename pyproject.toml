@@ -1,0 +1,33 @@
+[build-system]
+requires = ["hatchling>=1.25.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "reasonops-sdk"
+version = "0.1.0"
+description = "ReasonOps ITSM Python SDK"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "Apache-2.0" }
+authors = [
+  { name = "ReasonOps Team" }
+]
+keywords = ["ITIL", "ITSM", "SRE", "SLM", "ReasonOps", "agents"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: Apache Software License",
+  "Operating System :: OS Independent",
+]
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/yasir2000/ReasonOps-ITSM"
+Repository = "https://github.com/yasir2000/ReasonOps-ITSM"
+
+[tool.hatch.build.targets.wheel]
+# Package only the reasonops_sdk module for distribution
+packages = ["reasonops_sdk"]
+
+[tool.pytest.ini_options]
+addopts = "-q"
+pythonpath = ["."]

@@ -4,6 +4,34 @@ An orchestrated ITIL/ITSM framework that blends complete ITIL 4 guidance with pr
 
 This repository provides a comprehensive implementation of the ITIL 4 framework, combining theoretical knowledge with practical implementation guidance, real-world examples, and hands-on ServiceNow experience.
 
+## 🚀 SDK Quickstart
+
+Use the Python SDK to interact with ReasonOps ITSM programmatically (dashboards, monthly summaries, SLM metrics, and financial operations).
+
+Example:
+
+```python
+from reasonops_sdk import ReasonOpsClient
+
+client = ReasonOpsClient()
+
+# Fetch integrated dashboard
+dashboard = client.get_dashboard()
+print(dashboard.services, dashboard.offerings)
+
+# Compute SLM metrics for last 30 days
+metrics = client.compute_slm_metrics(period_days=30)
+print(metrics.availability_pct, metrics.mttr_minutes, metrics.mtbf_hours)
+
+# Export monthly summary (auto-detected current month) to a file
+summary = client.export_monthly_summary(out_file="artifacts/monthly_summary.json")
+print(summary.month, summary.penalties.keys())
+```
+
+Notes:
+- The SDK expects the underlying framework modules (e.g., `integration/orchestrator.py`) to be available in the Python path when executing.
+- If you’re running directly from this repository, run Python from the repo root so relative imports work.
+
 ## 🎯 Repository Purpose
 
 - **Complete ITIL 4 Framework**: All 34 practices, Service Value System, and governance
