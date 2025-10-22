@@ -1,0 +1,180 @@
+# Multi-LLM Provider Configuration for ITIL AI Agents
+# 
+# This configuration file defines the LLM providers available to the ITIL AI agents.
+# Edit the API keys and settings according to your requirements.
+#
+# Environment Variables (recommended for API keys):
+# - OPENAI_API_KEY: Your OpenAI API key
+# - ANTHROPIC_API_KEY: Your Anthropic API key  
+# - GOOGLE_API_KEY: Your Google AI API key
+# - AZURE_OPENAI_API_KEY: Your Azure OpenAI API key
+# - AZURE_OPENAI_ENDPOINT: Your Azure OpenAI endpoint
+
+primary_provider: "openai_gpt4"
+fallback_providers: 
+  - "ollama_llama2"
+  - "anthropic_claude"
+  - "mock"
+
+providers:
+  # OpenAI GPT-4 - Best for complex analysis and reasoning
+  openai_gpt4:
+    provider: "openai"
+    model: "gpt-4"
+    api_key: "${OPENAI_API_KEY}"  # Set this environment variable
+    temperature: 0.1
+    max_tokens: 2000
+    timeout: 30
+    description: "OpenAI GPT-4 for complex incident analysis and problem solving"
+
+  # OpenAI GPT-3.5 - Faster and more cost-effective
+  openai_gpt35:
+    provider: "openai"
+    model: "gpt-3.5-turbo"
+    api_key: "${OPENAI_API_KEY}"
+    temperature: 0.1
+    max_tokens: 1500
+    timeout: 20
+    description: "OpenAI GPT-3.5 for quick triage and routine tasks"
+
+  # Anthropic Claude - Excellent for structured analysis
+  anthropic_claude:
+    provider: "anthropic"
+    model: "claude-3-sonnet-20240229"
+    api_key: "${ANTHROPIC_API_KEY}"  # Set this environment variable
+    temperature: 0.1
+    max_tokens: 2000
+    timeout: 30
+    description: "Anthropic Claude for detailed documentation and analysis"
+
+  # Google Gemini - Good general purpose model
+  google_gemini:
+    provider: "google"
+    model: "gemini-pro"
+    api_key: "${GOOGLE_API_KEY}"  # Set this environment variable
+    temperature: 0.1
+    max_tokens: 2000
+    timeout: 30
+    description: "Google Gemini for general ITIL tasks"
+
+  # Azure OpenAI - Enterprise deployment of OpenAI models
+  azure_openai:
+    provider: "azure_openai"
+    model: "gpt-4"
+    api_key: "${AZURE_OPENAI_API_KEY}"  # Set this environment variable
+    api_base: "${AZURE_OPENAI_ENDPOINT}"  # Set this environment variable
+    api_version: "2024-02-15-preview"
+    temperature: 0.1
+    max_tokens: 2000
+    timeout: 30
+    description: "Azure OpenAI for enterprise ITIL deployments"
+
+  # Ollama Local Models - Privacy-focused local deployment
+  ollama_llama2:
+    provider: "ollama"
+    model: "llama2:7b"
+    api_base: "http://localhost:11434"
+    temperature: 0.1
+    max_tokens: 2000
+    timeout: 60
+    description: "Local Llama2 7B model for privacy-sensitive operations"
+
+  ollama_llama2_13b:
+    provider: "ollama"
+    model: "llama2:13b"
+    api_base: "http://localhost:11434"
+    temperature: 0.1
+    max_tokens: 2000
+    timeout: 90
+    description: "Local Llama2 13B model for more complex local processing"
+
+  ollama_mistral:
+    provider: "ollama"
+    model: "mistral:7b"
+    api_base: "http://localhost:11434"
+    temperature: 0.1
+    max_tokens: 2000
+    timeout: 60
+    description: "Local Mistral 7B model optimized for code and technical analysis"
+
+  ollama_codellama:
+    provider: "ollama"
+    model: "codellama:7b"
+    api_base: "http://localhost:11434"
+    temperature: 0.1
+    max_tokens: 2000
+    timeout: 60
+    description: "Local CodeLlama for script analysis and automation tasks"
+
+  ollama_neural_chat:
+    provider: "ollama"
+    model: "neural-chat:7b"
+    api_base: "http://localhost:11434"
+    temperature: 0.1
+    max_tokens: 1500
+    timeout: 60
+    description: "Local Neural Chat model for conversational ITIL support"
+
+  # Hugging Face Models - Open source alternatives
+  huggingface_local:
+    provider: "huggingface"
+    model: "custom"
+    model_kwargs:
+      model_name: "microsoft/DialoGPT-medium"  # Example model
+    temperature: 0.1
+    max_tokens: 1000
+    description: "Local Hugging Face model for specialized tasks"
+
+  # Mock Provider - Always available for testing
+  mock:
+    provider: "mock"
+    model: "custom"
+    temperature: 0.1
+    max_tokens: 2000
+    description: "Mock provider for testing and fallback scenarios"
+
+# Provider Selection Rules (Optional)
+# Define which providers to use for specific ITIL processes
+provider_rules:
+  incident_analysis:
+    preferred: ["openai_gpt4", "anthropic_claude"]
+    fallback: ["ollama_llama2", "mock"]
+    
+  problem_management:
+    preferred: ["anthropic_claude", "openai_gpt4"]
+    fallback: ["ollama_llama2_13b", "mock"]
+    
+  change_management:
+    preferred: ["openai_gpt4", "google_gemini"]
+    fallback: ["ollama_mistral", "mock"]
+    
+  knowledge_management:
+    preferred: ["anthropic_claude", "google_gemini"]
+    fallback: ["ollama_neural_chat", "mock"]
+    
+  code_analysis:
+    preferred: ["ollama_codellama", "ollama_mistral"]
+    fallback: ["openai_gpt35", "mock"]
+    
+  quick_triage:
+    preferred: ["openai_gpt35", "ollama_llama2"]
+    fallback: ["mock"]
+
+# Cost Management Settings
+cost_settings:
+  max_tokens_per_hour: 100000  # Rate limiting
+  preferred_low_cost: ["ollama_llama2", "openai_gpt35"]
+  preferred_high_quality: ["openai_gpt4", "anthropic_claude"]
+  
+# Performance Settings
+performance_settings:
+  timeout_seconds: 30
+  retry_attempts: 3
+  max_concurrent_requests: 5
+  
+# Logging and Monitoring
+monitoring:
+  log_requests: true
+  log_responses: false  # Set to true for debugging (may expose sensitive data)
+  track_costs: true
+  track_performance: true

@@ -1,0 +1,14 @@
+{
+  "services": [
+    {
+      "service_name": "Customer Portal",
+      "availability_service_id": "SVC-001",
+      "supplier_name": "Acme Cloud Services"
+    },
+    {
+      "service_name": "Email Service",
+      "availability_service_id": "SVC-002",
+      "supplier_name": "DataSecure Ltd"
+    }
+  ]
+}

@@ -1,0 +1,241 @@
+{
+  "report_timestamp": "2025-10-22T02:28:35.076338",
+  "executive_summary": {
+    "incidents_handled": 6,
+    "automation_success_rate": "100.0%",
+    "critical_escalations": 0,
+    "problems_identified": 1,
+    "key_finding": "AI agents identified 2 significant patterns requiring attention",
+    "business_impact": "Proactive problem identification and automated triage improved incident response efficiency"
+  },
+  "incident_analysis": {
+    "incidents_processed": [
+      {
+        "incident_id": "INC-2025-001",
+        "status": "completed",
+        "confidence": 0.85,
+        "recommendations": {
+          "immediate_actions": [
+            "Verify incident details with user",
+            "Check system status and logs",
+            "Apply standard resolution procedures",
+            "Monitor for resolution effectiveness"
+          ],
+          "escalation_needed": false,
+          "problem_creation": false,
+          "knowledge_update": false
+        },
+        "next_steps": [
+          "Implement resolution plan",
+          "Monitor incident status",
+          "Update incident record",
+          "Communicate with stakeholders"
+        ]
+      },
+      {
+        "incident_id": "INC-2025-002",
+        "status": "completed",
+        "confidence": 0.85,
+        "recommendations": {
+          "immediate_actions": [
+            "Verify incident details with user",
+            "Check system status and logs",
+            "Apply standard resolution procedures",
+            "Monitor for resolution effectiveness"
+          ],
+          "escalation_needed": false,
+          "problem_creation": false,
+          "knowledge_update": false
+        },
+        "next_steps": [
+          "Implement resolution plan",
+          "Monitor incident status",
+          "Update incident record",
+          "Communicate with stakeholders"
+        ]
+      },
+      {
+        "incident_id": "INC-2025-003",
+        "status": "completed",
+        "confidence": 0.85,
+        "recommendations": {
+          "immediate_actions": [
+            "Verify incident details with user",
+            "Check system status and logs",
+            "Apply standard resolution procedures",
+            "Monitor for resolution effectiveness"
+          ],
+          "escalation_needed": false,
+          "problem_creation": false,
+          "knowledge_update": false
+        },
+        "next_steps": [
+          "Implement resolution plan",
+          "Monitor incident status",
+          "Update incident record",
+          "Communicate with stakeholders"
+        ]
+      },
+      {
+        "incident_id": "INC-2025-004",
+        "status": "completed",
+        "confidence": 0.85,
+        "recommendations": {
+          "immediate_actions": [
+            "Verify incident details with user",
+            "Check system status and logs",
+            "Apply standard resolution procedures",
+            "Monitor for resolution effectiveness"
+          ],
+          "escalation_needed": false,
+          "problem_creation": false,
+          "knowledge_update": false
+        },
+        "next_steps": [
+          "Implement resolution plan",
+          "Monitor incident status",
+          "Update incident record",
+          "Communicate with stakeholders"
+        ]
+      },
+      {
+        "incident_id": "INC-2025-005",
+        "status": "completed",
+        "confidence": 0.85,
+        "recommendations": {
+          "immediate_actions": [
+            "Verify incident details with user",
+            "Check system status and logs",
+            "Apply standard resolution procedures",
+            "Monitor for resolution effectiveness"
+          ],
+          "escalation_needed": false,
+          "problem_creation": false,
+          "knowledge_update": false
+        },
+        "next_steps": [
+          "Implement resolution plan",
+          "Monitor incident status",
+          "Update incident record",
+          "Communicate with stakeholders"
+        ]
+      },
+      {
+        "incident_id": "INC-2025-006",
+        "status": "completed",
+        "confidence": 0.85,
+        "recommendations": {
+          "immediate_actions": [
+            "Verify incident details with user",
+            "Check system status and logs",
+            "Apply standard resolution procedures",
+            "Monitor for resolution effectiveness"
+          ],
+          "escalation_needed": false,
+          "problem_creation": false,
+          "knowledge_update": false
+        },
+        "next_steps": [
+          "Implement resolution plan",
+          "Monitor incident status",
+          "Update incident record",
+          "Communicate with stakeholders"
+        ]
+      }
+    ],
+    "patterns_identified": [
+      {
+        "type": "recurring_category",
+        "category": "Email",
+        "incident_count": 4,
+        "affected_users_total": 1050,
+        "priority_distribution": {
+          "P1": 1,
+          "P2": 1,
+          "P3": 2
+        },
+        "recommendation": "Create problem record for recurring Email issues",
+        "incidents": [
+          "INC-2025-001",
+          "INC-2025-003",
+          "INC-2025-004",
+          "INC-2025-005"
+        ]
+      },
+      {
+        "type": "time_based",
+        "pattern": "morning_peak",
+        "description": "Higher incident volume during morning hours (9-11 AM)",
+        "recommendation": "Increase monitoring during peak hours",
+        "confidence": 0.75
+      }
+    ],
+    "problems_recommended": [],
+    "escalations_needed": [],
+    "knowledge_gaps": [],
+    "processing_summary": {
+      "total_incidents": 6,
+      "successfully_processed": 6,
+      "processing_success_rate": 100.0,
+      "escalations_needed": 0,
+      "problems_recommended": 0,
+      "knowledge_gaps_identified": 0,
+      "patterns_found": 2,
+      "average_confidence": 0.85
+    }
+  },
+  "problem_management": {
+    "problems_created": [
+      {
+        "title": "Recurring Email Performance Issues",
+        "description": "Pattern identified: 4 related incidents affecting 1050 users",
+        "category": "Email",
+        "priority": "P1",
+        "related_incidents": [
+          "INC-2025-001",
+          "INC-2025-003",
+          "INC-2025-004",
+          "INC-2025-005"
+        ],
+        "root_cause_hypothesis": "Email server resource exhaustion due to increased load and insufficient capacity planning",
+        "investigation_plan": [
+          "Review email server performance metrics and resource utilization",
+          "Analyze email server logs for error patterns and bottlenecks",
+          "Check email server configuration and capacity limits",
+          "Review recent changes to email infrastructure",
+          "Perform load testing on email server during off-peak hours"
+        ]
+      }
+    ],
+    "total_problems": 1,
+    "root_causes_identified": 1
+  },
+  "ai_performance": {
+    "agent_effectiveness": {
+      "processing_accuracy": "100.0%",
+      "average_confidence": "0.85",
+      "pattern_detection": "Excellent",
+      "escalation_precision": "High"
+    },
+    "automation_rate": 100.0,
+    "confidence_metrics": {
+      "average_confidence": 0.85,
+      "high_confidence_rate": "100.0%",
+      "low_confidence_incidents": 0,
+      "confidence_trend": "Stable"
+    }
+  },
+  "recommendations": [
+    "Implement proactive monitoring for identified service patterns to prevent future incidents",
+    "Prioritize root cause analysis for identified recurring issues to prevent future incidents"
+  ],
+  "next_actions": [
+    {
+      "priority": "P1",
+      "action": "Execute investigation plan for Recurring Email Performance Issues",
+      "owner": "Problem Management Team",
+      "timeline": "1-3 days",
+      "description": "Investigate root cause of recurring Email issues"
+    }
+  ]
+}

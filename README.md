@@ -1,102 +1,93 @@
-# ITSM/ITIL
+# ReasonOps ITSM
 
-ITSM (IT Service Management):
+An orchestrated ITIL/ITSM framework that blends complete ITIL 4 guidance with practical automation, multi-agent collaboration, and multi‑LLM support.
+
+This repository provides a comprehensive implementation of the ITIL 4 framework, combining theoretical knowledge with practical implementation guidance, real-world examples, and hands-on ServiceNow experience.
+
+## 🎯 Repository Purpose
+
+- **Complete ITIL 4 Framework**: All 34 practices, Service Value System, and governance
+- **Practical Implementation**: Real-world guidance and tools for organizations
+- **ServiceNow Integration**: Platform-specific examples and configurations
+- **Learning Resource**: Structured content for ITIL certification and professional development
+- **Reference Guide**: Templates, checklists, and best practices for practitioners
+
+## 📚 Framework Overview
+
+### ITSM vs ITOM Fundamentals
+
+**ITSM (IT Service Management)**:
 - Focuses on delivering IT services to end users
 - Customer/service-oriented approach
 - Deals with front-end service delivery
 
-Key Components:
-1. Service Desk/Help Desk
-2. Incident Management
-3. Problem Management
-4. Change Management
-5. Service Level Management
-6. Request Fulfillment
-7. Knowledge Management
-
-ITOM (IT Operations Management):
+**ITOM (IT Operations Management)**:
 - Focuses on backend infrastructure & operations
 - Technology/infrastructure-oriented approach
 - Deals with maintaining IT infrastructure
 
-Key Components:
-1. Infrastructure Monitoring
-2. Network Management
-3. Capacity Planning
-4. Performance Management
-5. Availability Management
-6. Configuration Management
-7. Automation & Orchestration
-
-Relationship:
-```
-ITOM supports ITSM:
-- ITOM ensures infrastructure availability
-- ITSM ensures service delivery
-```
-
-Example Scenario:
+**Integration Example**:
 1. ITOM: Monitors server performance
-2. ITOM: Detects server issue
+2. ITOM: Detects server issue  
 3. ITSM: Creates incident ticket
 4. ITSM: Manages communication with users
 5. ITOM: Implements technical fix
 6. ITSM: Confirms resolution with users
 
-# ITIL-Notes
-ITIL-Notes
+## 🏗️ Complete ITIL 4 Framework Structure
 
-**Self-Study Plan:**
+### **[📋 Framework Documentation](./framework/)**
+Comprehensive ITIL 4 implementation with all components:
 
-1\.	Introduction to ITIL 4
+- **[🎯 Service Value System](./framework/service-value-system/)** - Core SVS components and interactions
+- **[📚 All 34 ITIL Practices](./framework/practices/)** - Complete practice documentation
+- **[🏛️ Governance Framework](./framework/governance/)** - Decision-making and oversight
+- **[🔄 Continual Improvement](./framework/continual-improvement/)** - Enhancement processes
+- **[🚀 Implementation Guide](./framework/implementation/)** - Practical adoption roadmap
+- **[📊 Metrics Framework](./framework/metrics/)** - KPIs and measurement approach
+- **[📄 Templates & Tools](./framework/templates/)** - Ready-to-use resources
 
-- Overview of ITIL
-- Evolution from previous versions to ITIL 4
-- Purpose and objectives of ITIL 4
+### **Legacy Study Materials**
+- **[ITIL.md](./ITIL.md)** - Original theoretical content
+- **[input.md](./input.md)** - ServiceNow hands-on examples
 
-2\.	ITIL Service Value System
+## 🎓 Learning Path
 
-- Key components of the service value system
-- Understanding value creation
-- Opportunity, demand, and value streams
+### **Beginner Track**
+1. [ITIL 4 Foundation](./framework/service-value-system/) - Core concepts
+2. [Service Desk & Incident Management](./framework/practices/service-management/incident-management.md)
+3. [Basic ServiceNow Implementation](./input.md)
 
-3\.	Guiding Principles
+### **Intermediate Track**  
+4. [Problem & Change Management](./framework/practices/service-management/)
+5. [Service Level Management](./framework/practices/service-management/service-level-management.md)
+6. [Implementation Planning](./framework/implementation/)
 
-- The seven guiding principles of ITIL 4
-- Practical application of the guiding principles
+### **Advanced Track**
+7. [Complete Practice Portfolio](./framework/practices/)
+8. [Governance & Leadership](./framework/governance/)
+9. [Metrics & Measurement](./framework/metrics/)
+10. [Continual Improvement](./framework/continual-improvement/)
 
-4\.	Four Dimensions of Service Management
+## 🔧 Practical Implementation
 
-- Organizations and people
-- Information and technology
-- Partners and suppliers
-- Value streams and processes
+### **Assessment Tools**
+- Organizational readiness assessment
+- Practice maturity evaluation
+- Gap analysis templates
+- Implementation roadmaps
 
-5\.	ITIL Service Value Chain
+### **ServiceNow Integration**
+- Platform configuration guides
+- Workflow implementations
+- Dashboard and reporting setup
+- Integration best practices
 
-- Activities in the service value chain
-- Plan, improve, engage, design & transition, obtain/build, deliver & support
-
-6\.	General Management Practices
-
-- Risk management
-- Continual improvement
-- Information security management
-- Knowledge management
-
-7\.	Service Management Practices
-
-- Service desk
-- Incident management
-- Problem management
-- Change control
-- Service request management
-
-8\.	Technical Management Practices
-
-- Deployment management
-- Software development and management
-- Infrastructure and platform management
+### **Templates & Checklists**
+- Process documentation templates
+- Implementation checklists
+- Governance frameworks
+- Performance measurement tools
 
 1. Introduction to ITIL 4:
 
@@ -408,6 +399,45 @@ ITIL 4 outlines seven key principles to guide effective IT service management. A
 - **Practical application:** Write clean, well-commented code that's easy to understand and modify. Don't over-engineer solutions; strive for elegant simplicity.
 
 **7. Optimize and Automate:**
+
+## 🧩 Python ITIL Framework Orchestrator (Demos)
+
+This repo includes a Python-based ITIL 4 demo framework under `python-framework/` with runnable modules for key practices (Event, CMDB, SLA, Assets, Availability, Capacity, Security, Service Catalogue, Supplier, Financial).
+
+We added a lightweight orchestrator that wires these practices together following rigorous ITSM/ITIL flows:
+
+- Loads sample data from practices (Catalogue, SLM, Security, Availability, Capacity, Suppliers, Financials, Assets)
+- Links services to suppliers/contracts and SLAs
+- Simulates a security detection and an SLA breach, then posts supplier penalties into Financials
+- Prints an integrated dashboard snapshot for a quick end-to-end view
+
+How to run (from `python-framework`):
+
+```bash
+python -m integration.orchestrator
+```
+
+You should see output like:
+
+```
+🌐 ITIL Orchestrator — Integrated ITSM/ITIL Flow
+🛡️ Simulating security event...
+Triggered rules: Credential Stuffing Suspected | Open Security Incidents: 1
+
+📏 Simulating SLA breach and applying supplier penalties...
+Posted Supplier Penalties: $...
+
+📊 Integrated Dashboard:
+Services: 2 | Offerings: 4
+SLA - Active Agreements: ... | Avg Compliance: ... | Recent Breaches: ...
+Security - Incidents Open: ... | Risk Score: ... | Control Eff: ...
+Suppliers - Count: ... | Contracts: ... | Renewals Due: ...
+Financials - Budget: $... | Actual: $... | Variance: $...
+```
+
+Notes:
+- Imports were patched for resilient execution whether run as a package or standalone
+- Extend mappings and flows to feed Availability/Capacity data into SLM and Financials over time
 
 - **What it means:** Look for ways to streamline processes and automate repetitive tasks. This can free up your time for more creative and strategic work.
 - **Practical application:** Look for opportunities to use existing libraries, frameworks, or automated testing tools to improve coding efficiency.
