@@ -4,6 +4,251 @@ An orchestrated ITIL/ITSM framework that blends complete ITIL 4 guidance with pr
 
 This repository provides a comprehensive implementation of the ITIL 4 framework, combining theoretical knowledge with practical implementation guidance, real-world examples, and hands-on ServiceNow experience.
 
+## 🤖 AI Agent Setup and Usage
+
+ReasonOps ITSM includes a comprehensive AI agent system with multi-LLM provider support, including **Ollama for local LLM deployments**.
+
+### Quick Start with Ollama (Local LLM)
+
+1. **Install Ollama**:
+   ```bash
+   # macOS/Linux
+   curl -fsSL https://ollama.com/install.sh | sh
+   
+   # Windows: Download from https://ollama.com/download
+   ```
+
+2. **Pull a model** (e.g., Llama 2):
+   ```bash
+   ollama pull llama2:7b
+   # or use mistral, codellama, etc.
+   ```
+
+3. **Start Ollama** (usually runs on http://localhost:11434):
+   ```bash
+   ollama serve
+   ```
+
+4. **Configure agents to use Ollama**:
+   ```python
+   from reasonops_sdk import ReasonOpsClient
+   
+   client = ReasonOpsClient()
+   client.configure_llm_provider(
+       provider='ollama',
+       model='llama2-7b',
+       temperature=0.7
+   )
+   ```
+
+### Supported LLM Providers
+
+- **Ollama** (local): llama2-7b, mistral-7b, codellama, llama2-13b
+- **OpenAI** (cloud): gpt-4, gpt-4-turbo, gpt-3.5-turbo
+- **Anthropic** (cloud): claude-3-opus, claude-3-sonnet, claude-3-haiku
+- **Google** (cloud): gemini-pro, gemini-pro-vision
+- **Azure OpenAI** (enterprise): gpt-4, gpt-35-turbo
+- **HuggingFace** (custom): any model via API
+- **Mock** (testing): mock-model for development
+
+### SDK Agent Methods
+
+```python
+from reasonops_sdk import ReasonOpsClient
+
+client = ReasonOpsClient()
+
+# Execute agent orchestration for an event
+result = client.run_agents(
+    event_type='incident',
+    event_data={
+        'incident_id': 'INC001',
+        'severity': 'high',
+        'description': 'Service outage detected'
+    }
+)
+print(f"Decisions: {result['decisions']}")
+print(f"Actions: {result['actions_taken']}")
+
+# Get agent decision history
+decisions = client.get_agent_decisions(
+    limit=50,
+    event_type='incident',
+    agent_name='ServiceLevelAgent'
+)
+print(f"Found {decisions['total']} decisions")
+
+# Configure LLM provider
+config = client.configure_llm_provider(
+    provider='ollama',  # or 'openai', 'anthropic', etc.
+    model='llama2-7b',
+    temperature=0.7
+)
+
+# Check LLM provider health
+health = client.check_agent_health()
+for provider, status in health.items():
+    print(f"{provider}: {status['status']}")
+
+# List available providers and models
+providers = client.list_llm_providers()
+print(f"Available: {providers['providers']}")
+print(f"Recommended for local: {providers['recommended']['local']}")
+```
+
+### CLI Agent Commands
+
+```bash
+# Run agent orchestration
+python -m cli agents:run \
+  --event-type incident \
+  --event-data '{"severity": "high", "description": "Service down"}' \
+  --json
+
+# List agent decisions
+python -m cli agents:list-decisions --limit 50 --event-type incident
+
+# Configure LLM provider
+python -m cli agents:configure-llm \
+  --provider ollama \
+  --model llama2-7b \
+  --temperature 0.7
+
+# Check LLM provider health
+python -m cli agents:health --json
+
+# List available providers and models
+python -m cli agents:list-providers
+```
+
+### API Endpoints
+
+#### POST /api/agents/run
+Execute AI agent orchestration for an event.
+
+```bash
+curl -X POST http://localhost:8000/api/agents/run \
+  -H "Content-Type: application/json" \
+  -d '{
+    "event_type": "incident",
+    "event_data": {
+      "incident_id": "INC001",
+      "severity": "high",
+      "description": "Service outage"
+    }
+  }'
+```
+
+#### GET /api/agents/decisions
+Retrieve agent decision history with filters.
+
+```bash
+curl "http://localhost:8000/api/agents/decisions?limit=50&event_type=incident"
+```
+
+#### POST /api/agents/configure-llm
+Configure the active LLM provider.
+
+```bash
+curl -X POST http://localhost:8000/api/agents/configure-llm \
+  -H "Content-Type: application/json" \
+  -d '{
+    "provider": "ollama",
+    "model": "llama2-7b",
+    "temperature": 0.7
+  }'
+```
+
+#### GET /api/agents/health
+Check health of all LLM providers.
+
+```bash
+curl http://localhost:8000/api/agents/health
+```
+
+#### GET /api/agents/providers
+List available LLM providers and models.
+
+```bash
+curl http://localhost:8000/api/agents/providers
+```
+
+### Web UI Agent Dashboard
+
+Access the agent management interface at http://localhost:5173/agents
+
+Features:
+- **LLM Provider Configuration**: Select and configure Ollama, OpenAI, or other providers
+- **Provider Health Monitoring**: Real-time health status with latency and error tracking
+- **Execute Agent Orchestration**: Trigger agent workflows for incidents, capacity alerts, etc.
+- **Decision History**: Browse and filter past agent decisions
+- **Real-time Notifications**: Toast notifications for success/error states
+
+### Agent Architecture
+
+The agent system consists of:
+
+1. **LLM Router** (`python-framework/ai_agents/llm_router.py`):
+   - Health monitoring with automatic provider checks
+   - Intelligent fallback chain (Ollama → OpenAI → Mock)
+   - Streaming support for real-time responses
+   - Connection pooling and rate limiting
+
+2. **Multi-LLM Provider** (`python-framework/ai_agents/multi_llm_provider.py`):
+   - Unified interface for all LLM providers
+   - Provider-specific optimizations
+   - Automatic retry and error handling
+
+3. **Agent Orchestrator** (`python-framework/ai_agents/itil_multi_agent_orchestrator.py`):
+   - Collaborative multi-agent decision making
+   - Event bus for agent communication
+   - Decision persistence to JSON storage
+   - ITIL practice-specific agents
+
+### Configuration Examples
+
+#### Local Development (Ollama)
+```python
+client.configure_llm_provider(
+    provider='ollama',
+    model='llama2-7b',
+    temperature=0.7
+)
+```
+
+#### Production (OpenAI)
+```python
+client.configure_llm_provider(
+    provider='openai',
+    model='gpt-4-turbo',
+    api_key='sk-...',
+    temperature=0.7
+)
+```
+
+#### Enterprise (Azure OpenAI)
+```python
+client.configure_llm_provider(
+    provider='azure',
+    model='gpt-4',
+    api_key='your-azure-key',
+    temperature=0.7
+)
+```
+
+### Testing Agents
+
+Run the comprehensive agent test suite:
+
+```bash
+# Python tests
+pytest tests/test_agents.py -v
+
+# Webapp tests
+cd webapp
+npm test -- agents.test.tsx
+```
+
 ## 🚀 SDK Quickstart
 
 Use the Python SDK to interact with ReasonOps ITSM programmatically (dashboards, monthly summaries, SLM metrics, and financial operations).

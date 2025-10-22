@@ -139,3 +139,93 @@ class ReasonOpsClient:
         except Exception as exc:  # pragma: no cover
             raise ReasonOpsError(f"Failed to import storage.json_store: {exc}")
         json_store.clear_all()
+
+    # -------- AI Agent Operations --------
+    def run_agents(self, event_type: str, event_data: Dict[str, Any]) -> Dict[str, Any]:
+        """Execute AI agent orchestration for an event"""
+        # Delegate to orchestrator's agent handling
+        try:
+            result = self._orc.handle_agent_event(event_type=event_type, event_data=event_data, config=self._config)
+            return result
+        except AttributeError:
+            # Fallback if orchestrator doesn't have agent handling
+            return {
+                "status": "mock",
+                "message": "Agent orchestration not available in this environment",
+                "event_type": event_type
+            }
+
+    def get_agent_decisions(
+        self, 
+        limit: int = 50, 
+        event_type: Optional[str] = None,
+        agent_name: Optional[str] = None
+    ) -> Dict[str, Any]:
+        """Retrieve agent decision history with optional filters"""
+        try:
+            from storage import json_store  # type: ignore
+            decisions = json_store.get_agent_decisions(
+                limit=limit,
+                event_type=event_type,
+                agent_name=agent_name
+            )
+            return {"total": len(decisions), "decisions": decisions}
+        except Exception:
+            return {"total": 0, "decisions": []}
+
+    def configure_llm_provider(
+        self,
+        provider: str,
+        model: Optional[str] = None,
+        api_key: Optional[str] = None,
+        temperature: float = 0.7
+    ) -> Dict[str, Any]:
+        """Configure the active LLM provider for AI agents"""
+        # Update orchestrator configuration
+        try:
+            self._config = self._config or {}
+            self._config["llm_provider"] = {
+                "provider": provider,
+                "model": model,
+                "api_key": api_key,
+                "temperature": temperature
+            }
+            return {
+                "status": "success",
+                "provider": provider,
+                "model": model or "default"
+            }
+        except Exception as exc:
+            raise ReasonOpsError(f"Failed to configure LLM provider: {exc}")
+
+    def check_agent_health(self) -> Dict[str, Any]:
+        """Check health status of LLM providers"""
+        try:
+            # Attempt to ping the orchestrator's LLM router
+            result = self._orc.check_llm_health(config=self._config)
+            return result
+        except AttributeError:
+            return {
+                "status": "unavailable",
+                "message": "LLM health check not available in this environment"
+            }
+
+    def list_llm_providers(self) -> Dict[str, Any]:
+        """List all available LLM providers and models"""
+        return {
+            "providers": ["ollama", "openai", "anthropic", "google", "azure", "huggingface", "mock"],
+            "models": {
+                "ollama": ["llama2-7b", "mistral-7b", "codellama", "llama2-13b"],
+                "openai": ["gpt-4", "gpt-4-turbo", "gpt-3.5-turbo"],
+                "anthropic": ["claude-3-opus", "claude-3-sonnet", "claude-3-haiku"],
+                "google": ["gemini-pro", "gemini-pro-vision"],
+                "azure": ["gpt-4", "gpt-35-turbo"],
+                "huggingface": ["custom models via API"],
+                "mock": ["mock-model"]
+            },
+            "recommended": {
+                "local": "ollama + llama2-7b",
+                "cloud": "openai + gpt-4-turbo",
+                "enterprise": "azure + gpt-4"
+            }
+        }
