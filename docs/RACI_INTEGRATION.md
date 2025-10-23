@@ -312,7 +312,6 @@ To extend the RACI model with new processes or agent roles:
 
 ## References
 
-- **YaSM RACI Matrix**: See `docs/YaSM-RACI-Matrix.pdf` for detailed role definitions
 - **ITIL 4 Framework**: Official ITIL 4 guidance on practices and roles
 - **ReasonOps Documentation**: See `docs/` for additional framework documentation
 
