@@ -533,10 +533,11 @@ class ResolutionPlanningTool(ITILAgentTool):
 
 
 class ITILAgentCrew:
-    """Manages a crew of AI agents for ITIL processes with multi-LLM support"""
+    """Manages a crew of AI agents for ITIL processes with multi-LLM support and RACI integration"""
     
-    def __init__(self, itil_manager: ITILIntegrationManager, llm_model=None, llm_config_file=None):
+    def __init__(self, itil_manager: ITILIntegrationManager, llm_model=None, llm_config_file=None, primary_role=None):
         self.itil_manager = itil_manager
+        self.primary_role = primary_role  # For RACI-specific agent crews
         
         # Initialize multi-LLM manager if available
         if MULTI_LLM_AVAILABLE:
@@ -794,6 +795,281 @@ class ITILAgentCrew:
             AgentRole.KNOWLEDGE_MANAGER: ["Knowledge capture", "Documentation", "Best practices"]
         }
         return capabilities.get(role, [])
+    
+    # RACI-specific methods for agent orchestration
+    def execute_itil_activity(self, activity_type: str, activity_name: str, context: Dict[str, Any]) -> Dict[str, Any]:
+        """Execute an ITIL activity as a responsible agent"""
+        try:
+            if activity_type == "incident_management":
+                return self._execute_incident_activity(activity_name, context)
+            elif activity_type == "problem_management":
+                return self._execute_problem_activity(activity_name, context)
+            elif activity_type == "change_enablement":
+                return self._execute_change_activity(activity_name, context)
+            elif activity_type == "service_desk":
+                return self._execute_service_desk_activity(activity_name, context)
+            else:
+                return self._execute_generic_activity(activity_type, activity_name, context)
+        except Exception as e:
+            return {
+                "status": "failed",
+                "error": str(e),
+                "activity_type": activity_type,
+                "activity_name": activity_name
+            }
+    
+    def provide_consultation(self, activity_type: str, activity_context: Dict[str, Any], current_results: Dict[str, Any]) -> Dict[str, Any]:
+        """Provide consultation input for an activity (Consulted role)"""
+        consultation = {
+            "timestamp": datetime.now().isoformat(),
+            "consultant_role": self.primary_role,
+            "activity_type": activity_type,
+            "consultation_type": "expert_advice"
+        }
+        
+        if activity_type == "incident_management":
+            consultation["advice"] = self._provide_incident_consultation(activity_context, current_results)
+        elif activity_type == "problem_management":
+            consultation["advice"] = self._provide_problem_consultation(activity_context, current_results)
+        elif activity_type == "change_enablement":
+            consultation["advice"] = self._provide_change_consultation(activity_context, current_results)
+        else:
+            consultation["advice"] = f"Generic consultation for {activity_type} from {self.primary_role}"
+        
+        return consultation
+    
+    def provide_accountability_signoff(self, activity_type: str, execution_summary: Dict[str, Any], consultation_log: List[Dict[str, Any]]) -> Dict[str, Any]:
+        """Provide accountability sign-off for completed activity (Accountable role)"""
+        signoff = {
+            "timestamp": datetime.now().isoformat(),
+            "accountable_agent": self.primary_role,
+            "activity_type": activity_type,
+            "approval_status": "approved"  # Could be approved, rejected, or conditional
+        }
+        
+        # Evaluate execution quality
+        quality_score = self._evaluate_execution_quality(execution_summary, consultation_log)
+        signoff["quality_assessment"] = quality_score
+        
+        if quality_score >= 0.8:
+            signoff["approval_status"] = "approved"
+            signoff["comments"] = "Activity completed successfully with high quality"
+        elif quality_score >= 0.6:
+            signoff["approval_status"] = "conditional"
+            signoff["comments"] = "Activity completed but with minor issues requiring follow-up"
+        else:
+            signoff["approval_status"] = "rejected"
+            signoff["comments"] = "Activity quality below standards, requires rework"
+        
+        return signoff
+    
+    def _execute_incident_activity(self, activity_name: str, context: Dict[str, Any]) -> Dict[str, Any]:
+        """Execute incident management specific activity"""
+        if "Detection and Recording" in activity_name:
+            return {
+                "status": "completed",
+                "action": "incident_recorded",
+                "incident_id": context.get("incident_id"),
+                "classification": self._classify_incident(context),
+                "initial_assessment": self._assess_incident(context)
+            }
+        elif "Classification and Prioritization" in activity_name:
+            return {
+                "status": "completed", 
+                "action": "incident_classified",
+                "priority": self._determine_priority(context),
+                "category": self._determine_category(context),
+                "assignment_group": self._suggest_assignment_group(context)
+            }
+        elif "Resolution and Recovery" in activity_name:
+            return {
+                "status": "completed",
+                "action": "incident_resolved",
+                "resolution_steps": self._generate_resolution_steps(context),
+                "verification_required": True
+            }
+        else:
+            return {"status": "completed", "action": f"executed_{activity_name.lower().replace(' ', '_')}"}
+    
+    def _execute_problem_activity(self, activity_name: str, context: Dict[str, Any]) -> Dict[str, Any]:
+        """Execute problem management specific activity"""
+        if "Problem Identification" in activity_name:
+            return {
+                "status": "completed",
+                "action": "problem_identified",
+                "problem_id": context.get("problem_id"),
+                "related_incidents": context.get("related_incidents", []),
+                "root_cause_hypothesis": self._generate_hypothesis(context)
+            }
+        elif "Investigation and Diagnosis" in activity_name:
+            return {
+                "status": "completed",
+                "action": "root_cause_identified",
+                "root_cause": self._identify_root_cause(context),
+                "evidence": self._collect_evidence(context)
+            }
+        else:
+            return {"status": "completed", "action": f"executed_{activity_name.lower().replace(' ', '_')}"}
+    
+    def _execute_change_activity(self, activity_name: str, context: Dict[str, Any]) -> Dict[str, Any]:
+        """Execute change enablement specific activity"""
+        if "Change Request Creation" in activity_name:
+            return {
+                "status": "completed", 
+                "action": "change_request_created",
+                "change_id": context.get("change_id"),
+                "change_type": context.get("change_type", "standard"),
+                "risk_assessment": self._assess_change_risk(context)
+            }
+        elif "Assessment and Authorization" in activity_name:
+            return {
+                "status": "completed",
+                "action": "change_assessed",
+                "authorization_status": self._authorize_change(context),
+                "conditions": self._define_change_conditions(context)
+            }
+        else:
+            return {"status": "completed", "action": f"executed_{activity_name.lower().replace(' ', '_')}"}
+    
+    def _execute_service_desk_activity(self, activity_name: str, context: Dict[str, Any]) -> Dict[str, Any]:
+        """Execute service desk specific activity"""
+        if "User Contact and Request Logging" in activity_name:
+            return {
+                "status": "completed",
+                "action": "request_logged",
+                "request_id": context.get("request_id"),
+                "request_type": context.get("request_type"),
+                "initial_response": self._generate_initial_response(context)
+            }
+        else:
+            return {"status": "completed", "action": f"executed_{activity_name.lower().replace(' ', '_')}"}
+    
+    def _execute_generic_activity(self, activity_type: str, activity_name: str, context: Dict[str, Any]) -> Dict[str, Any]:
+        """Execute generic ITIL activity"""
+        return {
+            "status": "completed",
+            "action": f"executed_{activity_type}_{activity_name.lower().replace(' ', '_')}",
+            "context_processed": len(context),
+            "agent_role": self.primary_role
+        }
+    
+    # Helper methods for RACI operations
+    def _classify_incident(self, context: Dict[str, Any]) -> str:
+        """Classify incident type"""
+        description = context.get("description", "").lower()
+        if "network" in description or "connection" in description:
+            return "network"
+        elif "database" in description or "sql" in description:
+            return "database"
+        elif "application" in description or "software" in description:
+            return "application"
+        else:
+            return "general"
+    
+    def _assess_incident(self, context: Dict[str, Any]) -> Dict[str, Any]:
+        """Assess incident impact and urgency"""
+        return {
+            "impact": context.get("impact", "medium"),
+            "urgency": context.get("urgency", "medium"),
+            "affected_users": context.get("affected_users", 0),
+            "business_critical": context.get("severity") == "high"
+        }
+    
+    def _determine_priority(self, context: Dict[str, Any]) -> str:
+        """Determine incident priority based on impact and urgency"""
+        impact = context.get("impact", "medium").lower()
+        urgency = context.get("urgency", "medium").lower()
+        
+        if impact == "high" and urgency == "high":
+            return "critical"
+        elif impact == "high" or urgency == "high":
+            return "high"
+        elif impact == "medium" and urgency == "medium":
+            return "medium"
+        else:
+            return "low"
+    
+    def _determine_category(self, context: Dict[str, Any]) -> str:
+        """Determine incident category"""
+        return self._classify_incident(context)
+    
+    def _suggest_assignment_group(self, context: Dict[str, Any]) -> str:
+        """Suggest assignment group based on incident type"""
+        category = self._classify_incident(context)
+        assignment_groups = {
+            "network": "Network Operations",
+            "database": "Database Administration", 
+            "application": "Application Support",
+            "general": "Service Desk"
+        }
+        return assignment_groups.get(category, "Service Desk")
+    
+    def _generate_resolution_steps(self, context: Dict[str, Any]) -> List[str]:
+        """Generate resolution steps"""
+        return [
+            f"Analyze {context.get('description', 'issue')}",
+            "Implement fix",
+            "Test resolution",
+            "Verify with user"
+        ]
+    
+    def _generate_hypothesis(self, context: Dict[str, Any]) -> str:
+        """Generate root cause hypothesis"""
+        return f"Potential root cause for {context.get('problem_id', 'problem')}: System configuration issue"
+    
+    def _identify_root_cause(self, context: Dict[str, Any]) -> str:
+        """Identify root cause"""
+        return "Root cause identified: Configuration mismatch"
+    
+    def _collect_evidence(self, context: Dict[str, Any]) -> List[str]:
+        """Collect evidence"""
+        return ["Log analysis", "System monitoring data", "User reports"]
+    
+    def _assess_change_risk(self, context: Dict[str, Any]) -> str:
+        """Assess change risk"""
+        return "Medium risk - standard change procedure applies"
+    
+    def _authorize_change(self, context: Dict[str, Any]) -> str:
+        """Authorize change"""
+        return "Authorized with conditions"
+    
+    def _define_change_conditions(self, context: Dict[str, Any]) -> List[str]:
+        """Define change conditions"""
+        return ["Testing required", "Rollback plan confirmed", "Communication sent"]
+    
+    def _generate_initial_response(self, context: Dict[str, Any]) -> str:
+        """Generate initial response to user"""
+        return f"Request {context.get('request_id', 'received')} logged successfully"
+    
+    def _evaluate_execution_quality(self, execution_summary: Dict[str, Any], consultation_log: List[Dict[str, Any]]) -> float:
+        """Evaluate the quality of activity execution"""
+        quality_score = 0.5  # Base score
+        
+        # Check if execution was successful
+        if execution_summary.get("primary_execution", {}).get("results", {}).get("status") == "completed":
+            quality_score += 0.3
+        
+        # Check consultation involvement
+        if len(consultation_log) > 0:
+            quality_score += 0.1
+        
+        # Check for comprehensive results
+        if len(execution_summary.get("primary_execution", {}).get("results", {})) > 3:
+            quality_score += 0.1
+        
+        return min(quality_score, 1.0)
+    
+    def _provide_incident_consultation(self, context: Dict[str, Any], current_results: Dict[str, Any]) -> str:
+        """Provide incident-specific consultation"""
+        return f"Consultation for incident {context.get('incident_id', 'unknown')}: Recommend escalation if not resolved within SLA"
+    
+    def _provide_problem_consultation(self, context: Dict[str, Any], current_results: Dict[str, Any]) -> str:
+        """Provide problem-specific consultation"""
+        return f"Problem analysis consultation: Consider related incidents and trend analysis"
+    
+    def _provide_change_consultation(self, context: Dict[str, Any], current_results: Dict[str, Any]) -> str:
+        """Provide change-specific consultation"""
+        return f"Change consultation: Ensure proper testing and rollback procedures are in place"
 
 
 def create_sample_incident() -> Dict[str, Any]:

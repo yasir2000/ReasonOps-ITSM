@@ -34,6 +34,7 @@ We've created a **comprehensive documentation ecosystem** for ReasonOps ITSM v0.
 | Document | Purpose | Location |
 |----------|---------|----------|
 | **AI Agents Architecture** | Deep dive into AI agents | [ai-agents-architecture.md](ai-agents-architecture.md) |
+| **RACI Integration** | RACI model for AI agent assignment | [RACI_INTEGRATION.md](RACI_INTEGRATION.md) ⭐ |
 | **Multi-LLM Setup** | Configure multiple LLM providers | [python-framework/docs/MULTI_LLM_SETUP.md](python-framework/docs/MULTI_LLM_SETUP.md) |
 | **ITIL Coverage** | ITIL framework alignment | [python-framework/docs/ITIL_COVERAGE_ANALYSIS.md](python-framework/docs/ITIL_COVERAGE_ANALYSIS.md) |
 | **Implementation Summary** | Project implementation details | [IMPLEMENTATION_SUMMARY.md](IMPLEMENTATION_SUMMARY.md) |

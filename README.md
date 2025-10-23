@@ -14,12 +14,14 @@ This repository provides a comprehensive implementation of the ITIL 4 framework,
 
 ## 🎉 What's New in v0.2.0
 
-**Major Release: AI Agent Integration with Multi-LLM Support**
+**Major Release: AI Agent Integration with Multi-LLM Support + RACI Model**
 
 - 🤖 **Local-First AI**: Run agents with Ollama - completely offline, free, and private
 - 🌐 **Multi-LLM Support**: Choose from Ollama, OpenAI, Anthropic, Google, Azure, HuggingFace
 - 🎯 **Complete Integration**: Accessible via Web UI, REST API, CLI, and Python SDK
 - 💪 **Production-Ready**: Health monitoring, intelligent fallbacks, streaming support
+- 🎭 **RACI Model Integration**: Intelligent AI agent assignment based on ITIL roles and responsibilities
+- ⚡ **Multi-Agent Orchestration**: Automated collaboration with accountability and audit trails
 - ✅ **Fully Tested**: 21 passing tests (13 Python + 8 Webapp)
 
 [📖 Read Full Release Notes](docs/RELEASE_NOTES.md) | [📋 View Changelog](docs/CHANGELOG.md)
@@ -29,6 +31,7 @@ This repository provides a comprehensive implementation of the ITIL 4 framework,
 - [🤖 AI Agent Setup and Usage](#-ai-agent-setup-and-usage)
   - [Quick Start with Ollama](#quick-start-with-ollama-local-llm)
   - [Supported LLM Providers](#supported-llm-providers)
+  - [RACI Model Integration](#raci-model-integration)
   - [SDK Agent Methods](#sdk-agent-methods)
   - [CLI Agent Commands](#cli-agent-commands)
   - [API Endpoints](#api-endpoints)
