@@ -7,10 +7,11 @@
 [![Python](https://img.shields.io/badge/python-3.9%2B-blue.svg)](https://www.python.org/)
 [![Tests](https://img.shields.io/badge/tests-21%20passing-brightgreen.svg)](#-testing)
 [![AI Agents](https://img.shields.io/badge/AI%20Agents-Ollama%20%7C%20OpenAI%20%7C%206%2B-purple.svg)](#-ai-agent-setup-and-usage)
+[![RACI Model](https://img.shields.io/badge/RACI%20Model-Intelligent%20Assignment-orange.svg)](docs/RACI_INTEGRATION.md)
 
-An orchestrated ITIL/ITSM framework that blends complete ITIL 4 guidance with practical automation, multi-agent collaboration, and multi‑LLM support.
+An orchestrated ITIL/ITSM framework that blends complete ITIL 4 guidance with practical automation, multi-agent collaboration, multi‑LLM support, and intelligent RACI-based agent assignment.
 
-This repository provides a comprehensive implementation of the ITIL 4 framework, combining theoretical knowledge with practical implementation guidance, real-world examples, and hands-on ServiceNow experience.
+This repository provides a comprehensive implementation of the ITIL 4 framework, combining theoretical knowledge with practical implementation guidance, real-world examples, hands-on ServiceNow experience, and sophisticated AI agent orchestration using RACI methodology.
 
 ## 🎉 What's New in v0.2.0
 
@@ -95,6 +96,39 @@ ReasonOps ITSM includes a comprehensive AI agent system with multi-LLM provider 
 - **Azure OpenAI** (enterprise): gpt-4, gpt-35-turbo
 - **HuggingFace** (custom): any model via API
 - **Mock** (testing): mock-model for development
+
+### RACI Model Integration
+
+ReasonOps ITSM now includes **intelligent AI agent assignment** using the RACI (Responsible, Accountable, Consulted, Informed) methodology for ITIL activities.
+
+**Key Features:**
+- 🎯 **Intelligent Assignment**: Automatic agent assignment based on RACI roles and expertise
+- 🤝 **Multi-Agent Collaboration**: Coordinated execution with Responsible, Accountable, Consulted, and Informed agents
+- 📊 **Audit Trail**: Complete tracking of all activities for compliance and accountability
+- ⚡ **Event-Driven**: Automatic triggering of RACI activities based on ITIL events
+- 🔧 **Configurable**: Support for custom RACI matrices and role definitions
+
+**Quick Example:**
+```python
+from ai_agents.raci_orchestrator import create_raci_orchestrator
+
+# Create RACI-enabled orchestrator
+orchestrator = create_raci_orchestrator()
+
+# Execute incident classification with automatic agent assignment
+context = {
+    "incident_id": "INC-2025-001",
+    "severity": "high",
+    "description": "Database connection timeout"
+}
+
+execution_id = orchestrator.execute_activity("inc_002", context)
+# Automatically assigns: Incident Analyst (R), Incident Manager (A), Service Owner (C)
+```
+
+**Supported ITIL Processes:** 34 management practices including Incident Management, Problem Management, Change Enablement, Service Desk, and more.
+
+📖 **[Complete RACI Documentation](docs/RACI_INTEGRATION.md)** - Detailed setup, configuration, and usage guide
 
 ### SDK Agent Methods
 
