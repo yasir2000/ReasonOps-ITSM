@@ -282,8 +282,8 @@ def handle_production_incident(monitoring_data):
 ## 📚 Additional Resources
 
 - **Full Documentation:** [README.md](../../README.md)
-- **Quick Start Guide:** [QUICKSTART.md](../../QUICKSTART.md)
-- **Scenario Details:** [SCENARIOS.md](../../SCENARIOS.md)
+- **Quick Start Guide:** [QUICKSTART.md](../../docs/QUICKSTART.md)
+- **Scenario Details:** [SCENARIOS.md](../../docs/SCENARIOS.md)
 - **API Reference:** [README.md#api](../../README.md#-api)
 - **SDK Guide:** [README.md#python-sdk](../../README.md#-python-sdk)
 
@@ -296,7 +296,7 @@ Have a great scenario idea? Contribute it!
 3. Test thoroughly
 4. Submit a pull request
 
-See [CONTRIBUTING.md](../../CONTRIBUTING.md) for details.
+See [CONTRIBUTING.md](../../docs/CONTRIBUTING.md) for details.
 
 ## 💡 Tips & Tricks
 

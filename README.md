@@ -2,10 +2,10 @@
 
 # ReasonOps ITSM
 
-[![Version](https://img.shields.io/badge/version-0.2.0-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-0.2.0-blue.svg)](docs/CHANGELOG.md)
 [![License](https://img.shields.io/badge/license-Apache%202.0-green.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/python-3.9%2B-blue.svg)](https://www.python.org/)
-[![Tests](https://img.shields.io/badge/tests-21%20passing-brightgreen.svg)](#testing)
+[![Tests](https://img.shields.io/badge/tests-21%20passing-brightgreen.svg)](#-testing)
 [![AI Agents](https://img.shields.io/badge/AI%20Agents-Ollama%20%7C%20OpenAI%20%7C%206%2B-purple.svg)](#-ai-agent-setup-and-usage)
 
 An orchestrated ITIL/ITSM framework that blends complete ITIL 4 guidance with practical automation, multi-agent collaboration, and multi‑LLM support.
@@ -22,7 +22,7 @@ This repository provides a comprehensive implementation of the ITIL 4 framework,
 - 💪 **Production-Ready**: Health monitoring, intelligent fallbacks, streaming support
 - ✅ **Fully Tested**: 21 passing tests (13 Python + 8 Webapp)
 
-[📖 Read Full Release Notes](RELEASE_NOTES.md) | [📋 View Changelog](CHANGELOG.md)
+[📖 Read Full Release Notes](docs/RELEASE_NOTES.md) | [📋 View Changelog](docs/CHANGELOG.md)
 
 ## 📑 Table of Contents
 
@@ -242,7 +242,7 @@ The web interface provides a comprehensive dashboard for managing AI agents:
 - Mobile menu with smooth animations
 - Error boundary for crash protection
 
-**Documentation**: See [WEBAPP_OPTIMIZATION.md](WEBAPP_OPTIMIZATION.md) for complete details
+**Documentation**: See [WEBAPP_OPTIMIZATION.md](docs/WEBAPP_OPTIMIZATION.md) for complete details
 
 Access the dashboard at `http://localhost:5173/agents` (requires `ops` role)
 
@@ -477,11 +477,11 @@ cat examples/scenarios/README.md
 
 ### Full Documentation
 
-- 📖 **Complete Scenario Guide**: [SCENARIOS.md](SCENARIOS.md) - Detailed workflows with code examples
+- 📖 **Complete Scenario Guide**: [SCENARIOS.md](docs/SCENARIOS.md) - Detailed workflows with code examples
 - 🔧 **Scenario README**: [examples/scenarios/README.md](examples/scenarios/README.md) - How to run and customize
 - 🎓 **Interactive Tutorial**: Run scenarios and modify parameters to learn
 
-**Want more?** Check out [SCENARIOS.md](SCENARIOS.md) for 6 complete scenarios with full code, explanations, and variations!
+**Want more?** Check out [SCENARIOS.md](docs/SCENARIOS.md) for 6 complete scenarios with full code, explanations, and variations!
 
 ## 🚀 SDK Quickstart
 
@@ -610,15 +610,15 @@ Comprehensive ITIL 4 implementation with all components:
 - **[📄 Templates & Tools](./framework/templates/)** - Ready-to-use resources
 
 ### **Legacy Study Materials**
-- **[ITIL.md](./ITIL.md)** - Original theoretical content
-- **[input.md](./input.md)** - ServiceNow hands-on examples
+- **[ITIL.md](./docs/ITIL.md)** - Original theoretical content
+- **[input.md](./docs/input.md)** - ServiceNow hands-on examples
 
 ## 🎓 Learning Path
 
 ### **Beginner Track**
 1. [ITIL 4 Foundation](./framework/service-value-system/) - Core concepts
 2. [Service Desk & Incident Management](./framework/practices/service-management/incident-management.md)
-3. [Basic ServiceNow Implementation](./input.md)
+3. [Basic ServiceNow Implementation](./docs/input.md)
 
 ### **Intermediate Track**  
 4. [Problem & Change Management](./framework/practices/service-management/)
@@ -1477,7 +1477,7 @@ limitations under the License.
 
 ### Third-Party Licenses
 
-This project uses open-source libraries. See [NOTICE](NOTICE) for attribution.
+This project uses open-source libraries.
 
 **Key Dependencies:**
 - **FastAPI** - MIT License
@@ -1491,8 +1491,8 @@ This project uses open-source libraries. See [NOTICE](NOTICE) for attribution.
 - **Repository**: [github.com/yasir2000/ReasonOps-ITSM](https://github.com/yasir2000/ReasonOps-ITSM)
 - **Issues**: [github.com/yasir2000/ReasonOps-ITSM/issues](https://github.com/yasir2000/ReasonOps-ITSM/issues)
 - **Discussions**: [github.com/yasir2000/ReasonOps-ITSM/discussions](https://github.com/yasir2000/ReasonOps-ITSM/discussions)
-- **Release Notes**: [RELEASE_NOTES.md](RELEASE_NOTES.md)
-- **Changelog**: [CHANGELOG.md](CHANGELOG.md)
+- **Release Notes**: [RELEASE_NOTES.md](docs/RELEASE_NOTES.md)
+- **Changelog**: [CHANGELOG.md](docs/CHANGELOG.md)
 
 ## 📞 Support
 
