@@ -1,3 +1,5 @@
+<img width="226" height="224" alt="image" src="https://github.com/user-attachments/assets/1b1ec281-52fa-4ec3-a828-d681e6304a77" />
+
 # ReasonOps ITSM
 
 [![Version](https://img.shields.io/badge/version-0.2.0-blue.svg)](CHANGELOG.md)
