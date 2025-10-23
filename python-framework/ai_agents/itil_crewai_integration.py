@@ -18,14 +18,36 @@ import logging
 # Add parent directory to path for ITIL framework imports
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+CREWAI_AVAILABLE = False
+LANGCHAIN_AVAILABLE = False
+
 try:
     from crewai import Agent, Task, Crew, Process
     from crewai.tools import BaseTool
-    from langchain.llms import OpenAI
-    from langchain.tools import Tool
+    CREWAI_AVAILABLE = True
 except ImportError:
-    print("⚠️  CrewAI not installed. Install with: pip install crewai langchain")
-    print("Creating mock classes for demonstration...")
+    pass
+
+try:
+    # Try multiple langchain import patterns
+    try:
+        from langchain.llms import OpenAI
+        from langchain.tools import Tool
+        LANGCHAIN_AVAILABLE = True
+    except ImportError:
+        try:
+            from langchain_openai import OpenAI
+            from langchain.tools import Tool
+            LANGCHAIN_AVAILABLE = True
+        except ImportError:
+            pass
+except ImportError:
+    pass
+
+if not CREWAI_AVAILABLE or not LANGCHAIN_AVAILABLE:
+    print("⚠️  Optional dependencies not fully available. Some features may be limited.")
+    print("   Install with: pip install crewai langchain langchain-openai")
+    print("   Creating mock classes for demonstration...")
     
     # Mock classes for demonstration if CrewAI is not installed
     class Agent:

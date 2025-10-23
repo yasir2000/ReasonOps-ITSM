@@ -58,6 +58,49 @@ def read_all(collection: str) -> List[Dict[str, Any]]:
         return []
 
 
+def query(collection: str, limit: Optional[int] = None, **filters) -> List[Dict[str, Any]]:
+    """Query collection with optional filters and limit"""
+    data = read_all(collection)
+    
+    # Apply filters
+    if filters:
+        filtered_data = []
+        for record in data:
+            match = True
+            for key, value in filters.items():
+                if record.get(key) != value:
+                    match = False
+                    break
+            if match:
+                filtered_data.append(record)
+        data = filtered_data
+    
+    # Apply limit
+    if limit is not None:
+        data = data[:limit]
+    
+    return data
+
+
+def save(collection: str, data: List[Dict[str, Any]]) -> None:
+    """Save complete data to collection"""
+    _ensure_dir()
+    path = _collection_path(collection)
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(data, f, default=_default, indent=2)
+
+
+def get_agent_decisions(limit: Optional[int] = None, event_type: Optional[str] = None, agent_name: Optional[str] = None) -> List[Dict[str, Any]]:
+    """Get agent decisions with optional filtering"""
+    filters = {}
+    if event_type:
+        filters["event_type"] = event_type
+    if agent_name:
+        filters["agent_name"] = agent_name
+    
+    return query("agent_decisions", limit=limit, **filters)
+
+
 def month_key(dt: datetime) -> str:
     return dt.strftime("%Y-%m")
 
