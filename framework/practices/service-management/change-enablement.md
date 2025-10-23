@@ -385,12 +385,12 @@ Pre-defined periods when changes are restricted:
 - **Packaging**: Multiple changes bundled in releases
 - **Deployment**: Release deployment requires change authorization
 
-### Incident Management
+### [Incident Management](./incident-management.md)
 - **Emergency Changes**: Incidents may require urgent changes
 - **Problem Resolution**: Problem fixes implemented through changes
 - **Service Restoration**: Changes to restore failed services
 
-### Problem Management
+### [Problem Management](./problem-management.md)
 - **Permanent Fixes**: Problem solutions implemented via changes
 - **Workaround Implementation**: Workarounds may require changes
 - **Prevention**: Changes to prevent known errors
@@ -558,4 +558,4 @@ ACTION ITEMS:
 
 ---
 
-*For ServiceNow-specific implementation details, see [ServiceNow Implementation Guide](../../implementation/servicenow-change-enablement.md)*
+*ServiceNow-specific implementation guide is planned for future release.*

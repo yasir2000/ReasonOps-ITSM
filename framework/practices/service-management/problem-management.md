@@ -267,12 +267,12 @@ Logical breakdown of how failures can occur:
 
 ## Integration with Other Practices
 
-### Incident Management
+### [Incident Management](./incident-management.md)
 - **Trigger**: Major incidents or incident patterns trigger problems
 - **Support**: Problems provide solutions for future incidents
 - **Knowledge**: Known errors inform incident resolution
 
-### Change Enablement
+### [Change Enablement](./change-enablement.md)
 - **Solutions**: Problem solutions often require changes
 - **Analysis**: Change failures may trigger problem investigations
 - **Prevention**: Changes implement permanent fixes
@@ -453,4 +453,4 @@ Owner: [Responsible person/team]
 
 ---
 
-*For ServiceNow-specific implementation details, see [ServiceNow Implementation Guide](../../implementation/servicenow-problem-management.md)*
+*ServiceNow-specific implementation guide is planned for future release.*

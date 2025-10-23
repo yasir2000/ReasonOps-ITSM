@@ -15,6 +15,12 @@ Practices specifically developed for IT service management.
 ### 🔧 Technical Management Practices (3)
 Practices adapted from technology management domains for service management.
 
+## Status Legend
+
+- ✅ **Available** - Practice guide available (clickable link)
+- 📋 **Planned** - Practice planned for future implementation
+- 🚧 **In Progress** - Practice guide currently being developed
+
 ---
 
 ## 📋 Complete Practice Inventory
@@ -23,50 +29,50 @@ Practices adapted from technology management domains for service management.
 
 | Practice | Status | Description |
 |----------|--------|-------------|
-| [Architecture Management](./general-management/architecture-management.md) | ✅ | Provides understanding of all elements that make up an organization |
-| [Continual Improvement](./general-management/continual-improvement.md) | ✅ | Aligns practices and services with changing business needs |
-| [Information Security Management](./general-management/information-security-management.md) | ✅ | Protects information needed by the organization |
-| [Knowledge Management](./general-management/knowledge-management.md) | ✅ | Maintains and improves effective use of information and knowledge |
-| [Measurement and Reporting](./general-management/measurement-reporting.md) | ✅ | Supports decision-making through performance measurement |
-| [Organizational Change Management](./general-management/organizational-change-management.md) | ✅ | Ensures changes are implemented smoothly and successfully |
-| [Portfolio Management](./general-management/portfolio-management.md) | ✅ | Ensures portfolio of investments delivers optimal value |
-| [Project Management](./general-management/project-management.md) | ✅ | Ensures successful project delivery through structured approach |
-| [Relationship Management](./general-management/relationship-management.md) | ✅ | Establishes and nurtures links between organization and stakeholders |
-| [Risk Management](./general-management/risk-management.md) | ✅ | Ensures risks are properly assessed and managed |
-| [Service Financial Management](./general-management/service-financial-management.md) | ✅ | Manages budgeting, accounting, and charging requirements |
-| [Strategy Management](./general-management/strategy-management.md) | ✅ | Formulates, executes, and monitors organizational strategy |
-| [Supplier Management](./general-management/supplier-management.md) | ✅ | Ensures suppliers and their performance meet expectations |
-| [Workforce and Talent Management](./general-management/workforce-talent-management.md) | ✅ | Ensures right people with appropriate skills are available |
+| Architecture Management | 📋 | Provides understanding of all elements that make up an organization |
+| Continual Improvement | 📋 | Aligns practices and services with changing business needs |
+| Information Security Management | 📋 | Protects information needed by the organization |
+| Knowledge Management | 📋 | Maintains and improves effective use of information and knowledge |
+| Measurement and Reporting | 📋 | Supports decision-making through performance measurement |
+| Organizational Change Management | 📋 | Ensures changes are implemented smoothly and successfully |
+| Portfolio Management | 📋 | Ensures portfolio of investments delivers optimal value |
+| Project Management | 📋 | Ensures successful project delivery through structured approach |
+| Relationship Management | 📋 | Establishes and nurtures links between organization and stakeholders |
+| Risk Management | 📋 | Ensures risks are properly assessed and managed |
+| Service Financial Management | 📋 | Manages budgeting, accounting, and charging requirements |
+| Strategy Management | 📋 | Formulates, executes, and monitors organizational strategy |
+| Supplier Management | 📋 | Ensures suppliers and their performance meet expectations |
+| Workforce and Talent Management | 📋 | Ensures right people with appropriate skills are available |
 
 ### Service Management Practices
 
 | Practice | Status | Description |
 |----------|--------|-------------|
-| [Availability Management](./service-management/availability-management.md) | ✅ | Ensures services deliver agreed levels of availability |
-| [Business Analysis](./service-management/business-analysis.md) | ✅ | Analyzes business needs and recommends solutions |
-| [Capacity and Performance Management](./service-management/capacity-performance-management.md) | ✅ | Ensures services perform optimally with adequate capacity |
+| Availability Management | 📋 | Ensures services deliver agreed levels of availability |
+| Business Analysis | 📋 | Analyzes business needs and recommends solutions |
+| Capacity and Performance Management | 📋 | Ensures services perform optimally with adequate capacity |
 | [Change Enablement](./service-management/change-enablement.md) | ✅ | Maximizes successful organizational changes while minimizing risk |
 | [Incident Management](./service-management/incident-management.md) | ✅ | Minimizes negative impact of incidents by restoring service quickly |
-| [IT Asset Management](./service-management/it-asset-management.md) | ✅ | Plans and manages full lifecycle of IT assets |
-| [Monitoring and Event Management](./service-management/monitoring-event-management.md) | ✅ | Observes services and service components systematically |
+| IT Asset Management | 📋 | Plans and manages full lifecycle of IT assets |
+| Monitoring and Event Management | 📋 | Observes services and service components systematically |
 | [Problem Management](./service-management/problem-management.md) | ✅ | Reduces likelihood and impact of incidents by addressing root causes |
-| [Release Management](./service-management/release-management.md) | ✅ | Makes new and changed services available for use |
-| [Service Catalogue Management](./service-management/service-catalogue-management.md) | ✅ | Provides single source of consistent information on services |
-| [Service Configuration Management](./service-management/service-configuration-management.md) | ✅ | Ensures accurate configuration information is available |
-| [Service Continuity Management](./service-management/service-continuity-management.md) | ✅ | Ensures service availability during major disruptions |
-| [Service Design](./service-management/service-design.md) | ✅ | Designs services that are fit for purpose and use |
-| [Service Desk](./service-management/service-desk.md) | ✅ | Captures demand for incident resolution and service requests |
-| [Service Level Management](./service-management/service-level-management.md) | ✅ | Sets clear expectations for service performance |
-| [Service Request Management](./service-management/service-request-management.md) | ✅ | Supports agreed quality of service by handling requests |
-| [Service Validation and Testing](./service-management/service-validation-testing.md) | ✅ | Ensures services meet requirements and specifications |
+| Release Management | 📋 | Makes new and changed services available for use |
+| Service Catalogue Management | 📋 | Provides single source of consistent information on services |
+| Service Configuration Management | 📋 | Ensures accurate configuration information is available |
+| Service Continuity Management | 📋 | Ensures service availability during major disruptions |
+| Service Design | 📋 | Designs services that are fit for purpose and use |
+| Service Desk | 📋 | Captures demand for incident resolution and service requests |
+| Service Level Management | 📋 | Sets clear expectations for service performance |
+| Service Request Management | 📋 | Supports agreed quality of service by handling requests |
+| Service Validation and Testing | 📋 | Ensures services meet requirements and specifications |
 
 ### Technical Management Practices
 
 | Practice | Status | Description |
 |----------|--------|-------------|
-| [Deployment Management](./technical-management/deployment-management.md) | ✅ | Moves hardware, software, and documentation to live environments |
-| [Infrastructure and Platform Management](./technical-management/infrastructure-platform-management.md) | ✅ | Oversees technology infrastructure supporting services |
-| [Software Development and Management](./technical-management/software-development-management.md) | ✅ | Ensures software applications meet stakeholder needs |
+| Deployment Management | 📋 | Moves hardware, software, and documentation to live environments |
+| Infrastructure and Platform Management | 📋 | Oversees technology infrastructure supporting services |
+| Software Development and Management | 📋 | Ensures software applications meet stakeholder needs |
 
 ---
 

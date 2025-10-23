@@ -274,12 +274,12 @@ Groups incidents by type for analysis and routing:
 
 ## Integration with Other Practices
 
-### Problem Management
+### [Problem Management](./problem-management.md)
 - Identify recurring incidents for problem investigation
 - Create problems from major incidents
 - Implement permanent fixes from problem resolution
 
-### Change Enablement
+### [Change Enablement](./change-enablement.md)
 - Create emergency changes for incident resolution
 - Link incidents to recent changes for root cause analysis
 
@@ -377,4 +377,4 @@ Bridge Details: [Conference call information if applicable]
 
 ---
 
-*For ServiceNow-specific implementation details, see [ServiceNow Implementation Guide](../../implementation/servicenow-incident-management.md)*
+*ServiceNow-specific implementation guide is planned for future release.*
