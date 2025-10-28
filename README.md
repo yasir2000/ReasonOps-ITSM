@@ -13,7 +13,7 @@ An orchestrated ITIL/ITSM framework that blends complete ITIL 4 guidance with pr
 
 This repository provides a comprehensive implementation of the ITIL 4 framework, combining theoretical knowledge with practical implementation guidance, real-world examples, hands-on ServiceNow experience, and sophisticated AI agent orchestration using RACI methodology.
 
-## 🎉 What's New in v0.2.0
+## 🎉 What's New in v2.0.0
 
 **Major Release: AI Agent Integration with Multi-LLM Support + RACI Model**
 
