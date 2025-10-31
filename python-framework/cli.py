@@ -494,6 +494,22 @@ def main():
     sample_parser.add_argument("--output", help="Output directory")
     sample_parser.set_defaults(func=cmd_matis_sample)
 
+    # generate AI playbook
+    generate_parser = matis_sub.add_parser("generate", help="Generate AI-powered automation playbook")
+    generate_parser.add_argument("--description", required=True, help="Description of automation requirement")
+    generate_parser.add_argument("--hosts", default="all", help="Target hosts for automation")
+    generate_parser.add_argument("--type", default="incident_response", choices=["incident_response", "maintenance", "deployment", "monitoring"], help="Type of automation")
+    generate_parser.add_argument("--output", help="Output file path")
+    generate_parser.set_defaults(func=cmd_matis_generate)
+
+    # generate incident response
+    incident_parser = matis_sub.add_parser("incident-playbook", help="Generate incident-specific response playbook")
+    incident_parser.add_argument("--title", required=True, help="Incident title")
+    incident_parser.add_argument("--description", required=True, help="Incident description")
+    incident_parser.add_argument("--services", nargs="+", help="Affected services")
+    incident_parser.add_argument("--output", help="Output file path")
+    incident_parser.set_defaults(func=cmd_matis_incident_playbook)
+
     # ========================================
     # DASHBOARD & REPORTING
     # ========================================
@@ -2466,6 +2482,137 @@ def cmd_matis_sample(args):
         print(f"✗ Failed to create sample files: {e}")
 
 
+def cmd_matis_generate(args):
+    """Generate AI-powered automation playbook"""
+    try:
+        import yaml
+        from pathlib import Path
+
+        executor = MatisTaskExecutor()
+
+        # Generate AI-powered playbook
+        playbook = executor.generate_automation_playbook(
+            incident_description=args.description,
+            target_hosts=args.hosts,
+            automation_type=args.type
+        )
+
+        # Determine output file
+        if args.output:
+            output_file = Path(args.output)
+        else:
+            output_file = Path.cwd() / f"ai_generated_{args.type}_playbook.yml"
+
+        # Save playbook
+        with open(output_file, 'w') as f:
+            yaml.dump(playbook, f, default_flow_style=False)
+
+        print("🤖 AI-Generated automation playbook created:")
+        print(f"   📄 Playbook: {output_file}")
+        print(f"   🎯 Description: {args.description[:50]}...")
+        print(f"   🎯 Type: {args.type}")
+        print(f"   🎯 Hosts: {args.hosts}")
+        print("\n🚀 Test with:")
+        print(f"   python cli.py matis simulate --playbook {output_file}")
+
+    except Exception as e:
+        print(f"✗ Failed to generate AI playbook: {e}")
+
+
+def cmd_matis_incident_playbook(args):
+    """Generate incident-specific response playbook"""
+    try:
+        import yaml
+        from pathlib import Path
+
+        executor = MatisTaskExecutor()
+
+        # Generate incident-specific playbook
+        playbook = executor.generate_incident_response_playbook(
+            incident_title=args.title,
+            incident_description=args.description,
+            affected_services=args.services
+        )
+
+        # Determine output file
+        if args.output:
+            output_file = Path(args.output)
+        else:
+            output_file = Path.cwd() / f"incident_response_{args.title.lower().replace(' ', '_')}.yml"
+
+        # Save playbook
+        with open(output_file, 'w') as f:
+            yaml.dump(playbook, f, default_flow_style=False)
+
+        print("🚨 AI-Generated incident response playbook created:")
+        print(f"   📄 Playbook: {output_file}")
+        print(f"   🚨 Incident: {args.title}")
+        print(f"   📝 Description: {args.description[:50]}...")
+        if args.services:
+            print(f"   🔧 Affected Services: {', '.join(args.services)}")
+        print("\n🚀 Test with:")
+        print(f"   python cli.py matis simulate --playbook {output_file}")
+
+    except Exception as e:
+        print(f"✗ Failed to generate incident playbook: {e}")
+        
+        playbook = generator.generate_playbook(
+            description=args.description,
+            hosts=args.hosts,
+            automation_type=args.type
+        )
+        
+        # Save to file if output path is provided
+        if args.output:
+            with open(args.output, 'w') as f:
+                yaml.dump(playbook, f, default_flow_style=False)
+            print(f"✅ Playbook generated and saved to: {args.output}")
+        else:
+            print("✅ Playbook generated:")
+            print(yaml.dump(playbook, default_flow_style=False))
+            
+    except Exception as e:
+        print(f"✗ Failed to generate playbook: {e}")
+
+
+def cmd_matis_incident_playbook(args):
+    """Generate incident-specific response playbook"""
+    try:
+        import yaml
+        from pathlib import Path
+
+        executor = MatisTaskExecutor()
+
+        # Generate incident-specific playbook
+        playbook = executor.generate_incident_response_playbook(
+            incident_title=args.title,
+            incident_description=args.description,
+            affected_services=args.services
+        )
+
+        # Determine output file
+        if args.output:
+            output_file = Path(args.output)
+        else:
+            output_file = Path.cwd() / f"incident_response_{args.title.lower().replace(' ', '_')}.yml"
+
+        # Save playbook
+        with open(output_file, 'w') as f:
+            yaml.dump(playbook, f, default_flow_style=False)
+
+        print("🚨 AI-Generated incident response playbook created:")
+        print(f"   📄 Playbook: {output_file}")
+        print(f"   🚨 Incident: {args.title}")
+        print(f"   📝 Description: {args.description[:50]}...")
+        if args.services:
+            print(f"   🔧 Affected Services: {', '.join(args.services)}")
+        print("\n🚀 Test with:")
+        print(f"   python cli.py matis simulate --playbook {output_file}")
+
+    except Exception as e:
+        print(f"✗ Failed to generate incident playbook: {e}")
+
+
 # ========================================
 # HELPER FUNCTIONS
 # ========================================
@@ -2500,7 +2647,3 @@ def _check_agents_health() -> Dict[str, Any]:
         return {"status": "healthy", "available": True}
     except Exception as e:
         return {"status": "degraded", "error": str(e)}
-
-
-if __name__ == "__main__":
-    main()

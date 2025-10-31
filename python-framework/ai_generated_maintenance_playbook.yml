@@ -1,0 +1,22 @@
+become: true
+hosts: webservers
+name: Incident Response Automation
+tasks:
+- command: echo 'Starting incident response for {{ incident_id }}'
+  name: Log incident start
+- command: systemctl status nginx
+  name: Check system status
+  register: nginx_status
+- name: Restart nginx if down
+  service:
+    name: nginx
+    state: restarted
+  when: nginx_status.rc != 0
+- command: journalctl -u nginx --since '1 hour ago' > /tmp/incident_logs.txt
+  name: Collect system logs
+- command: echo 'Incident {{ incident_id }} response completed' | mail -s 'Incident
+    Response' admin@example.com
+  name: Send notification
+vars:
+  incident_id: INC-{{ ansible_date_time.iso8601 }}
+  severity: high

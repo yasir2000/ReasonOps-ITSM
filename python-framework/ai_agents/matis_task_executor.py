@@ -417,42 +417,125 @@ class MatisTaskExecutor:
             ]
         }
 
-    def create_sample_inventory(self) -> Dict:
+    def generate_automation_playbook(self, incident_description: str, target_hosts: str = "all",
+                                   automation_type: str = "incident_response") -> Dict:
         """
-        Create a sample inventory for demonstration
+        Generate a custom automation playbook using AI based on incident description
+
+        Args:
+            incident_description: Description of the incident or automation requirement
+            target_hosts: Target hosts for the automation (default: "all")
+            automation_type: Type of automation (incident_response, maintenance, deployment, etc.)
 
         Returns:
-            Inventory dictionary
+            Generated playbook dictionary
         """
-        return {
-            "all": {
-                "vars": {
-                    "ansible_user": "admin",
-                    "ansible_ssh_private_key_file": "~/.ssh/id_rsa"
-                }
-            },
-            "webservers": {
-                "hosts": {
-                    "web01": {
-                        "ansible_host": "192.168.1.10",
-                        "http_port": 80
-                    },
-                    "web02": {
-                        "ansible_host": "192.168.1.11",
-                        "http_port": 8080
-                    }
-                }
-            },
-            "dbservers": {
-                "hosts": {
-                    "db01": {
-                        "ansible_host": "192.168.1.20",
-                        "db_port": 5432
-                    }
-                }
-            }
-        }
+        try:
+            import asyncio
+            from .multi_llm_provider import MultiLLMManager
 
+            # Initialize LLM manager
+            llm_manager = MultiLLMManager()
+
+            # Create prompt for AI-driven playbook generation
+            prompt = f"""
+            Generate a Matis/Ansible YAML automation playbook for the following scenario:
+
+            SCENARIO: {incident_description}
+            AUTOMATION TYPE: {automation_type}
+            TARGET HOSTS: {target_hosts}
+
+            Requirements:
+            1. Use proper YAML syntax compatible with Matis automation
+            2. Include appropriate tasks for the scenario
+            3. Add error handling and conditional logic where appropriate
+            4. Use variables for dynamic content
+            5. Include logging and notification steps
+            6. Ensure tasks are idempotent where possible
+
+            Generate only the playbook content as a valid YAML dictionary, no explanations.
+
+            Example structure:
+            name: "Generated Automation"
+            hosts: "{target_hosts}"
+            become: true
+            vars:
+              timestamp: "{{{{ ansible_date_time.iso8601 }}}}"
+            tasks:
+            - name: "Task description"
+              command: "command here"
+            """
+
+            # Get AI-generated playbook (run async in sync context)
+            async def get_response():
+                response = await llm_manager.generate_response(prompt)
+                return response.content if response else ""
+
+            response = asyncio.run(get_response())
+
+            # Parse the YAML response
+            import yaml
+            try:
+                playbook = yaml.safe_load(response)
+                # Validate basic structure
+                if not isinstance(playbook, dict) or 'tasks' not in playbook:
+                    raise ValueError("Invalid playbook structure generated")
+
+                # Ensure required fields
+                playbook.setdefault('name', f'AI Generated {automation_type.title()} Automation')
+                playbook.setdefault('hosts', target_hosts)
+                playbook.setdefault('become', True)
+
+                return playbook
+
+            except yaml.YAMLError as e:
+                print(f"❌ Failed to parse AI-generated YAML: {e}")
+                # Fallback to sample playbook
+                return self.create_sample_incident_response_playbook()
+
+        except Exception as e:
+            print(f"❌ AI playbook generation failed: {e}")
+            # Fallback to sample playbook
+            return self.create_sample_incident_response_playbook()
+
+    def generate_incident_response_playbook(self, incident_title: str, incident_description: str,
+                                          affected_services: List[str] = None) -> Dict:
+        """
+        Generate an incident-specific response playbook using AI
+
+        Args:
+            incident_title: Title of the incident
+            incident_description: Detailed description of the incident
+            affected_services: List of affected services/systems
+
+        Returns:
+            AI-generated incident response playbook
+        """
+        if affected_services is None:
+            affected_services = ["webservers"]
+
+        # Create comprehensive incident context
+        full_description = f"""
+        INCIDENT TITLE: {incident_title}
+
+        INCIDENT DESCRIPTION: {incident_description}
+
+        AFFECTED SERVICES: {', '.join(affected_services)}
+
+        Generate an automated response playbook that:
+        1. Checks the status of affected services
+        2. Attempts automated remediation
+        3. Collects diagnostic information
+        4. Notifies stakeholders
+        5. Logs all actions taken
+        """
+
+        return self.generate_automation_playbook(
+            incident_description=full_description,
+            target_hosts=affected_services[0] if len(affected_services) == 1 else "all",
+            automation_type="incident_response"
+        )
+        
 
 # Global instance for use across the framework
 matis_executor = MatisTaskExecutor()
