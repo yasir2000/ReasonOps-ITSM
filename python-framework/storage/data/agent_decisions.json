@@ -1,0 +1,122 @@
+[
+  {
+    "timestamp": null,
+    "agent_role": "Security Analyst",
+    "action": "Initiated containment plan",
+    "incident_id": "INC-2025-001",
+    "service": "Customer Portal",
+    "count": 1
+  },
+  {
+    "timestamp": "2025-10-31T20:12:28.116512",
+    "agent_role": "Availability Manager",
+    "action": "Started post-incident review",
+    "outage_id": "4b1d8cf2-960b-4fac-944c-b94dd094f2d4",
+    "service": "Customer Portal",
+    "count": 1
+  },
+  {
+    "timestamp": "2025-10-31T20:12:28.153883",
+    "agent_role": "Capacity Planner",
+    "action": "Proposed scale-up plan",
+    "resource": "Web Server Cluster",
+    "service": "Customer Portal",
+    "count": 1
+  },
+  {
+    "timestamp": null,
+    "agent_role": "Security Analyst",
+    "action": "Initiated containment plan",
+    "incident_id": "INC-2025-001",
+    "service": "Customer Portal",
+    "count": 1
+  },
+  {
+    "timestamp": "2025-10-31T20:12:48.235155",
+    "agent_role": "Availability Manager",
+    "action": "Started post-incident review",
+    "outage_id": "ef5e5a65-7530-47c0-a6b3-11c0376e0197",
+    "service": "Customer Portal",
+    "count": 1
+  },
+  {
+    "timestamp": "2025-10-31T20:12:48.270713",
+    "agent_role": "Capacity Planner",
+    "action": "Proposed scale-up plan",
+    "resource": "Web Server Cluster",
+    "service": "Customer Portal",
+    "count": 1
+  },
+  {
+    "timestamp": null,
+    "agent_role": "Security Analyst",
+    "action": "Initiated containment plan",
+    "incident_id": "INC-2025-001",
+    "service": "Customer Portal",
+    "count": 1
+  },
+  {
+    "timestamp": "2025-10-31T20:19:04.024884",
+    "agent_role": "Availability Manager",
+    "action": "Started post-incident review",
+    "outage_id": "18cc48b3-6def-42e9-9366-0154cf41531b",
+    "service": "Customer Portal",
+    "count": 1
+  },
+  {
+    "timestamp": "2025-10-31T20:19:04.069856",
+    "agent_role": "Capacity Planner",
+    "action": "Proposed scale-up plan",
+    "resource": "Web Server Cluster",
+    "service": "Customer Portal",
+    "count": 1
+  },
+  {
+    "timestamp": null,
+    "agent_role": "Security Analyst",
+    "action": "Initiated containment plan",
+    "incident_id": "INC-2025-001",
+    "service": "Customer Portal",
+    "count": 1
+  },
+  {
+    "timestamp": "2025-10-31T20:19:38.096478",
+    "agent_role": "Availability Manager",
+    "action": "Started post-incident review",
+    "outage_id": "5761e578-dcb9-49d1-9fae-500b206f99ee",
+    "service": "Customer Portal",
+    "count": 1
+  },
+  {
+    "timestamp": "2025-10-31T20:19:38.134115",
+    "agent_role": "Capacity Planner",
+    "action": "Proposed scale-up plan",
+    "resource": "Web Server Cluster",
+    "service": "Customer Portal",
+    "count": 1
+  },
+  {
+    "timestamp": null,
+    "agent_role": "Security Analyst",
+    "action": "Initiated containment plan",
+    "incident_id": "INC-2025-001",
+    "service": "Customer Portal",
+    "count": 1
+  },
+  {
+    "timestamp": "2025-10-31T20:32:54.897880",
+    "agent_role": "Availability Manager",
+    "action": "Started post-incident review",
+    "outage_id": "32b1844d-7d00-4ecc-8088-f2e87ff3b735",
+    "service": "Customer Portal",
+    "count": 1
+  },
+  {
+    "timestamp": "2025-10-31T20:32:54.937614",
+    "agent_role": "Capacity Planner",
+    "action": "Proposed scale-up plan",
+    "resource": "Web Server Cluster",
+    "service": "Customer Portal",
+    "count": 1
+  }
+]

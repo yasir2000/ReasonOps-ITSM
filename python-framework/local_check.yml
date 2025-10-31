@@ -1,0 +1,8 @@
+name: Local System Check
+tasks:
+- name: Check system uptime
+  command: uptime
+- name: Check disk usage
+  command: df -h
+- name: Check memory usage
+  command: free -h

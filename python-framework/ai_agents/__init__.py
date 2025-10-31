@@ -16,6 +16,7 @@ from .itil_crewai_integration import (
     ResolutionPlanningTool,
     create_sample_incident
 )
+from .matis_task_executor import MatisTaskExecutor, get_matis_executor
 
 __all__ = [
     'ITILAgentCrew',
@@ -25,7 +26,9 @@ __all__ = [
     'IncidentAnalysisTool',
     'ProblemAnalysisTool', 
     'ResolutionPlanningTool',
-    'create_sample_incident'
+    'create_sample_incident',
+    'MatisTaskExecutor',
+    'get_matis_executor'
 ]
 
 __version__ = '1.0.0'

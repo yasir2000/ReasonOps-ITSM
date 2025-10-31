@@ -1,0 +1,14 @@
+[
+  {
+    "id": "KB20251031210903",
+    "title": "Database Performance Troubleshooting",
+    "content": "Steps to diagnose and resolve database performance issues: 1. Check system resources (CPU, memory, disk I/O), 2. Review query execution plans, 3. Analyze slow query logs, 4. Optimize indexes, 5. Consider hardware upgrades if needed",
+    "category": "Database",
+    "tags": [
+      "performance,troubleshooting,database"
+    ],
+    "created": "2025-10-31T21:09:03.130298",
+    "created_by": "cli_user",
+    "status": "published"
+  }
+]

@@ -1,0 +1,130 @@
+[
+  {
+    "timestamp": "2025-10-31T20:12:28.196462",
+    "service": "Data Platform",
+    "units": 1000.0,
+    "unit": "GB",
+    "amount": "20.00",
+    "consumer": "Shared Services"
+  },
+  {
+    "timestamp": "2025-10-31T20:12:28.196462",
+    "service": "Customer Portal",
+    "units": 120.0,
+    "unit": "hour",
+    "amount": "60.00",
+    "consumer": "Customer Experience"
+  },
+  {
+    "timestamp": "2025-10-31T20:12:48.342054",
+    "service": "Data Platform",
+    "units": 1000.0,
+    "unit": "GB",
+    "amount": "20.00",
+    "consumer": "Shared Services"
+  },
+  {
+    "timestamp": "2025-10-31T20:12:48.344060",
+    "service": "Customer Portal",
+    "units": 120.0,
+    "unit": "hour",
+    "amount": "60.00",
+    "consumer": "Customer Experience"
+  },
+  {
+    "timestamp": "2025-10-31T20:19:04.105854",
+    "service": "Data Platform",
+    "units": 1000.0,
+    "unit": "GB",
+    "amount": "20.00",
+    "consumer": "Shared Services"
+  },
+  {
+    "timestamp": "2025-10-31T20:19:04.106866",
+    "service": "Customer Portal",
+    "units": 120.0,
+    "unit": "hour",
+    "amount": "60.00",
+    "consumer": "Customer Experience"
+  },
+  {
+    "timestamp": "2025-10-31T20:19:38.182788",
+    "service": "Data Platform",
+    "units": 1000.0,
+    "unit": "GB",
+    "amount": "20.00",
+    "consumer": "Shared Services"
+  },
+  {
+    "timestamp": "2025-10-31T20:19:38.182788",
+    "service": "Customer Portal",
+    "units": 120.0,
+    "unit": "hour",
+    "amount": "60.00",
+    "consumer": "Customer Experience"
+  },
+  {
+    "timestamp": "2025-10-31T20:32:54.975811",
+    "service": "Data Platform",
+    "units": 1000.0,
+    "unit": "GB",
+    "amount": "20.00",
+    "consumer": "Shared Services"
+  },
+  {
+    "timestamp": "2025-10-31T20:32:54.979248",
+    "service": "Customer Portal",
+    "units": 120.0,
+    "unit": "hour",
+    "amount": "60.00",
+    "consumer": "Customer Experience"
+  },
+  {
+    "timestamp": "2025-10-31T20:38:58.280040",
+    "service": "Data Platform",
+    "units": 1000.0,
+    "unit": "GB",
+    "amount": "20.00",
+    "consumer": "Shared Services"
+  },
+  {
+    "timestamp": "2025-10-31T20:38:58.282111",
+    "service": "Customer Portal",
+    "units": 120.0,
+    "unit": "hour",
+    "amount": "60.00",
+    "consumer": "Customer Experience"
+  },
+  {
+    "timestamp": "2025-10-31T20:59:38.641014",
+    "service": "Data Platform",
+    "units": 1000.0,
+    "unit": "GB",
+    "amount": "20.00",
+    "consumer": "Shared Services"
+  },
+  {
+    "timestamp": "2025-10-31T20:59:38.641014",
+    "service": "Customer Portal",
+    "units": 120.0,
+    "unit": "hour",
+    "amount": "60.00",
+    "consumer": "Customer Experience"
+  },
+  {
+    "timestamp": "2025-10-31T21:07:53.770086",
+    "service": "Data Platform",
+    "units": 1000.0,
+    "unit": "GB",
+    "amount": "20.00",
+    "consumer": "Shared Services"
+  },
+  {
+    "timestamp": "2025-10-31T21:07:53.770086",
+    "service": "Customer Portal",
+    "units": 120.0,
+    "unit": "hour",
+    "amount": "60.00",
+    "consumer": "Customer Experience"
+  }
+]

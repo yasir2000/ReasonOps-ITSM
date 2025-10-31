@@ -11,6 +11,7 @@ Categories:
   practices    - ITIL Practice management (incident, problem, change, etc.)
   cmdb         - Configuration Management Database operations
   agents       - AI Agent orchestration and management
+  matis        - Matis Task Automation Platform
   slm          - Service Level Management
   financial    - Financial management and reporting
   assets       - IT Asset management
@@ -32,6 +33,8 @@ import csv
 import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Union
+import yaml
+
 
 # Ensure local imports
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
@@ -39,6 +42,7 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from core.branding import NAME as FRAMEWORK_NAME, VERSION as FRAMEWORK_VERSION, TAGLINE as FRAMEWORK_TAGLINE
 from integration.orchestrator import ITILOrchestrator
 from ai_agents.itil_multi_agent_orchestrator import CollaborativeAgentsOrchestrator
+from ai_agents.matis_task_executor import MatisTaskExecutor
 from storage import json_store
 
 
@@ -442,6 +446,53 @@ def main():
     providers_parser = agents_sub.add_parser("providers", help="List available LLM providers and models")
     providers_parser.add_argument("--json", action="store_true")
     providers_parser.set_defaults(func=cmd_agents_list_providers)
+
+    # ========================================
+    # MATIS TASK AUTOMATION
+    # ========================================
+    matis_parser = subparsers.add_parser("matis", help="Matis Task Automation Platform")
+    matis_sub = matis_parser.add_subparsers(dest="matis_cmd")
+
+    # validate installation
+    validate_parser = matis_sub.add_parser("validate", help="Validate Matis installation")
+    validate_parser.set_defaults(func=cmd_matis_validate)
+
+    # execute playbook
+    execute_parser = matis_sub.add_parser("execute", help="Execute a Matis playbook")
+    execute_parser.add_argument("--playbook", required=True, help="Path to playbook YAML file")
+    execute_parser.add_argument("--inventory", help="Path to inventory YAML file")
+    execute_parser.add_argument("--extra-vars", action="append", help="Extra variables (key=value)")
+    execute_parser.add_argument("--task-id", help="Task identifier")
+    execute_parser.set_defaults(func=cmd_matis_execute)
+
+    # execute SSH playbook
+    ssh_parser = matis_sub.add_parser("ssh", help="Execute playbook over SSH")
+    ssh_parser.add_argument("--playbook", required=True, help="Path to playbook YAML file")
+    ssh_parser.add_argument("--inventory", required=True, help="Path to inventory YAML file")
+    ssh_parser.add_argument("--user", help="SSH username")
+    ssh_parser.add_argument("--key", help="SSH private key path")
+    ssh_parser.add_argument("--threads", type=int, default=4, help="Number of parallel threads")
+    ssh_parser.add_argument("--task-id", help="Task identifier")
+    ssh_parser.set_defaults(func=cmd_matis_ssh)
+
+    # simulate execution
+    simulate_parser = matis_sub.add_parser("simulate", help="Simulate playbook execution")
+    simulate_parser.add_argument("--playbook", required=True, help="Path to playbook YAML file")
+    simulate_parser.add_argument("--inventory", help="Path to inventory YAML file")
+    simulate_parser.add_argument("--task-id", help="Task identifier")
+    simulate_parser.set_defaults(func=cmd_matis_simulate)
+
+    # show history
+    history_parser = matis_sub.add_parser("history", help="Show execution history")
+    history_parser.add_argument("--limit", type=int, default=10, help="Max number of results")
+    history_parser.add_argument("--json", action="store_true")
+    history_parser.set_defaults(func=cmd_matis_history)
+
+    # create sample playbook
+    sample_parser = matis_sub.add_parser("sample", help="Create sample playbook and inventory")
+    sample_parser.add_argument("--type", choices=["incident-response", "inventory"], default="incident-response", help="Type of sample to create")
+    sample_parser.add_argument("--output", help="Output directory")
+    sample_parser.set_defaults(func=cmd_matis_sample)
 
     # ========================================
     # DASHBOARD & REPORTING
@@ -2199,6 +2250,220 @@ def cmd_security_audit(args: argparse.Namespace) -> None:
                 
     except Exception as e:
         print(f"✗ Failed to run security audit: {e}")
+
+
+# ========================================
+# MATIS TASK AUTOMATION COMMANDS
+# ========================================
+
+def cmd_matis_validate(args):
+    """Validate Matis installation"""
+    try:
+        executor = MatisTaskExecutor()
+        if executor.validate_matis_installation():
+            print("✅ Matis is properly installed and accessible")
+            print("📍 Binary location: e:\\Code\\ReasonOps-ITSM\\matis\\target\\release\\matis")
+            print("🚀 Ready for task automation execution")
+        else:
+            print("❌ Matis is not available")
+            print("💡 Make sure Matis is built and the binary exists")
+    except Exception as e:
+        print(f"✗ Failed to validate Matis: {e}")
+
+
+def cmd_matis_execute(args):
+    """Execute a Matis playbook locally"""
+    try:
+        executor = MatisTaskExecutor()
+        
+        # Load playbook
+        with open(args.playbook, 'r') as f:
+            playbook_content = yaml.safe_load(f)
+        
+        # Load inventory if provided
+        inventory_content = None
+        if args.inventory:
+            with open(args.inventory, 'r') as f:
+                inventory_content = yaml.safe_load(f)
+        
+        # Parse extra vars
+        extra_vars = {}
+        if args.extra_vars:
+            for var in args.extra_vars:
+                if '=' in var:
+                    key, value = var.split('=', 1)
+                    extra_vars[key] = value
+        
+        result = executor.execute_playbook(
+            playbook_content,
+            inventory_content,
+            extra_vars,
+            args.task_id
+        )
+        
+        if result.success:
+            print(f"✅ Playbook executed successfully in {result.execution_time:.2f}s")
+            if result.output:
+                print("Output:")
+                print(result.output)
+        else:
+            print(f"❌ Playbook execution failed: {result.error}")
+            if result.output:
+                print("Output:")
+                print(result.output)
+                
+    except Exception as e:
+        print(f"✗ Failed to execute playbook: {e}")
+
+
+def cmd_matis_ssh(args):
+    """Execute a Matis playbook over SSH"""
+    try:
+        executor = MatisTaskExecutor()
+        
+        # Load playbook
+        with open(args.playbook, 'r') as f:
+            playbook_content = yaml.safe_load(f)
+        
+        # Load inventory
+        with open(args.inventory, 'r') as f:
+            inventory_content = yaml.safe_load(f)
+        
+        result = executor.execute_ssh_playbook(
+            playbook_content,
+            inventory_content,
+            args.user,
+            args.key,
+            args.threads,
+            args.task_id
+        )
+        
+        if result.success:
+            print(f"✅ SSH playbook executed successfully in {result.execution_time:.2f}s")
+            if result.output:
+                print("Output:")
+                print(result.output)
+        else:
+            print(f"❌ SSH playbook execution failed: {result.error}")
+            if result.output:
+                print("Output:")
+                print(result.output)
+                
+    except Exception as e:
+        print(f"✗ Failed to execute SSH playbook: {e}")
+
+
+def cmd_matis_simulate(args):
+    """Simulate Matis playbook execution"""
+    try:
+        executor = MatisTaskExecutor()
+        
+        # Load playbook
+        with open(args.playbook, 'r') as f:
+            playbook_content = yaml.safe_load(f)
+        
+        # Load inventory if provided
+        inventory_content = None
+        if args.inventory:
+            with open(args.inventory, 'r') as f:
+                inventory_content = yaml.safe_load(f)
+        
+        result = executor.simulate_execution(
+            playbook_content,
+            inventory_content,
+            args.task_id
+        )
+        
+        if result.success:
+            print(f"✅ Playbook simulation completed in {result.execution_time:.2f}s")
+            if result.output:
+                print("Simulation Output:")
+                print(result.output)
+        else:
+            print(f"❌ Playbook simulation failed: {result.error}")
+            if result.output:
+                print("Output:")
+                print(result.output)
+                
+    except Exception as e:
+        print(f"✗ Failed to simulate playbook: {e}")
+
+
+def cmd_matis_history(args):
+    """Show Matis execution history"""
+    try:
+        executor = MatisTaskExecutor()
+        history = executor.get_execution_history(args.limit)
+        
+        if not history:
+            print("No execution history found")
+            return
+        
+        if args.json:
+            history_data = []
+            for result in history:
+                history_data.append({
+                    "task_id": result.task_id,
+                    "success": result.success,
+                    "execution_time": result.execution_time,
+                    "timestamp": result.timestamp.isoformat(),
+                    "error": result.error if result.error else None
+                })
+            print_json(history_data)
+        else:
+            print(f"Matis Execution History (Last {len(history)} tasks)")
+            print("-" * 80)
+            for result in history:
+                status = "✅" if result.success else "❌"
+                print(f"{status} {result.task_id} - {result.execution_time:.2f}s - {result.timestamp.strftime('%Y-%m-%d %H:%M:%S')}")
+                if result.error and not result.success:
+                    print(f"   Error: {result.error[:100]}{'...' if len(result.error) > 100 else ''}")
+            print("-" * 80)
+                
+    except Exception as e:
+        print(f"✗ Failed to retrieve history: {e}")
+
+
+def cmd_matis_sample(args):
+    """Create sample Matis playbook and inventory"""
+    try:
+        import yaml
+        executor = MatisTaskExecutor()
+        
+        output_dir = Path(args.output) if args.output else Path.cwd()
+        output_dir.mkdir(exist_ok=True)
+        
+        if args.type == "incident-response":
+            playbook = executor.create_sample_incident_response_playbook()
+            inventory = executor.create_sample_inventory()
+            
+            playbook_file = output_dir / "incident-response-playbook.yml"
+            inventory_file = output_dir / "inventory.yml"
+            
+            with open(playbook_file, 'w') as f:
+                yaml.dump(playbook, f, default_flow_style=False)
+            
+            with open(inventory_file, 'w') as f:
+                yaml.dump(inventory, f, default_flow_style=False)
+            
+            print("✅ Sample incident response files created:")
+            print(f"   📄 Playbook: {playbook_file}")
+            print(f"   📋 Inventory: {inventory_file}")
+            print("\n🚀 Test with:")
+            print(f"   python -m cli matis simulate --playbook {playbook_file} --inventory {inventory_file}")
+            
+        elif args.type == "inventory":
+            inventory = executor.create_sample_inventory()
+            inventory_file = output_dir / "inventory.yml"
+            
+            with open(inventory_file, 'w') as f:
+                yaml.dump(inventory, f, default_flow_style=False)
+            
+            print("✅ Sample inventory created:")
+            print(f"   📋 Inventory: {inventory_file}")
+                
+    except Exception as e:
+        print(f"✗ Failed to create sample files: {e}")
 
 
 # ========================================

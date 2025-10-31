@@ -10,5 +10,137 @@
     "service": "Customer Portal",
     "metric": "availability_adjusted",
     "value": 100.0
+  },
+  {
+    "timestamp": "2025-10-31T20:12:28.102947",
+    "service": "Customer Portal",
+    "metric": "availability_adjusted",
+    "value": 99.76851851851852
+  },
+  {
+    "timestamp": "2025-10-31T20:12:28.131795",
+    "service": "Customer Portal",
+    "metric": "response_time",
+    "value": 250.0
+  },
+  {
+    "timestamp": "2025-10-31T20:12:28.131795",
+    "service": "Customer Portal",
+    "metric": "throughput",
+    "value": 1200.0
+  },
+  {
+    "timestamp": "2025-10-31T20:12:48.222966",
+    "service": "Customer Portal",
+    "metric": "availability_adjusted",
+    "value": 99.76851851851852
+  },
+  {
+    "timestamp": "2025-10-31T20:12:48.247969",
+    "service": "Customer Portal",
+    "metric": "response_time",
+    "value": 250.0
+  },
+  {
+    "timestamp": "2025-10-31T20:12:48.247969",
+    "service": "Customer Portal",
+    "metric": "throughput",
+    "value": 1200.0
+  },
+  {
+    "timestamp": "2025-10-31T20:19:04.011861",
+    "service": "Customer Portal",
+    "metric": "availability_adjusted",
+    "value": 99.76851851851852
+  },
+  {
+    "timestamp": "2025-10-31T20:19:04.040857",
+    "service": "Customer Portal",
+    "metric": "response_time",
+    "value": 250.0
+  },
+  {
+    "timestamp": "2025-10-31T20:19:04.040857",
+    "service": "Customer Portal",
+    "metric": "throughput",
+    "value": 1200.0
+  },
+  {
+    "timestamp": "2025-10-31T20:19:38.080681",
+    "service": "Customer Portal",
+    "metric": "availability_adjusted",
+    "value": 99.76851851851852
+  },
+  {
+    "timestamp": "2025-10-31T20:19:38.110906",
+    "service": "Customer Portal",
+    "metric": "response_time",
+    "value": 250.0
+  },
+  {
+    "timestamp": "2025-10-31T20:19:38.110906",
+    "service": "Customer Portal",
+    "metric": "throughput",
+    "value": 1200.0
+  },
+  {
+    "timestamp": "2025-10-31T20:32:54.885035",
+    "service": "Customer Portal",
+    "metric": "availability_adjusted",
+    "value": 99.76851851851852
+  },
+  {
+    "timestamp": "2025-10-31T20:32:54.912135",
+    "service": "Customer Portal",
+    "metric": "response_time",
+    "value": 250.0
+  },
+  {
+    "timestamp": "2025-10-31T20:32:54.912135",
+    "service": "Customer Portal",
+    "metric": "throughput",
+    "value": 1200.0
+  },
+  {
+    "timestamp": "2025-10-31T20:38:58.234917",
+    "service": "Customer Portal",
+    "metric": "availability_adjusted",
+    "value": 99.76388888888889
+  },
+  {
+    "timestamp": "2025-10-31T20:38:58.249966",
+    "service": "Customer Portal",
+    "metric": "response_time",
+    "value": 250.0
+  },
+  {
+    "timestamp": "2025-10-31T20:38:58.249966",
+    "service": "Customer Portal",
+    "metric": "throughput",
+    "value": 1200.0
+  },
+  {
+    "timestamp": "2025-10-31T20:59:38.541428",
+    "service": "Customer Portal",
+    "metric": "availability_adjusted",
+    "value": 99.76388888888889
+  },
+  {
+    "timestamp": "2025-10-31T20:59:38.558660",
+    "service": "Customer Portal",
+    "metric": "response_time",
+    "value": 250.0
+  },
+  {
+    "timestamp": "2025-10-31T20:59:38.558660",
+    "service": "Customer Portal",
+    "metric": "throughput",
+    "value": 1200.0
+  },
+  {
+    "timestamp": "2025-10-31T21:06:23.780248",
+    "service": "Customer Portal",
+    "metric": "availability_adjusted",
+    "value": 99.79166666666667
   }
 ]

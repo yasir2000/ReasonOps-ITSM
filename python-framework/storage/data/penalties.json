@@ -1,0 +1,236 @@
+[
+  {
+    "timestamp": "2025-10-31T20:12:28.166005",
+    "service": "Customer Portal",
+    "agreement": "Customer Portal SLA",
+    "target_id": "5c91c678-902a-4a30-9d3b-55515737fd05",
+    "severity": "AlertSeverity.BREACH",
+    "supplier_contract_id": "da7b93ce-eee9-4e66-84f5-dbee905a78ef",
+    "penalty": "1000.00"
+  },
+  {
+    "timestamp": "2025-10-31T20:12:28.166998",
+    "service": "Customer Portal",
+    "agreement": "Customer Portal SLA",
+    "target_id": "5b34404f-6b50-4780-bff0-97f34a05c783",
+    "severity": "AlertSeverity.BREACH",
+    "supplier_contract_id": "da7b93ce-eee9-4e66-84f5-dbee905a78ef",
+    "penalty": "1000.00"
+  },
+  {
+    "timestamp": "2025-10-31T20:12:28.170069",
+    "service": "Customer Portal",
+    "agreement": "Customer Portal SLA",
+    "target_id": "5b34404f-6b50-4780-bff0-97f34a05c783",
+    "severity": "AlertSeverity.BREACH",
+    "supplier_contract_id": "da7b93ce-eee9-4e66-84f5-dbee905a78ef",
+    "penalty": "1000.00"
+  },
+  {
+    "timestamp": "2025-10-31T20:12:28.180565",
+    "service": "Customer Portal",
+    "agreement": "Customer Portal SLA",
+    "target_id": "5b34404f-6b50-4780-bff0-97f34a05c783",
+    "severity": "AlertSeverity.BREACH",
+    "supplier_contract_id": "da7b93ce-eee9-4e66-84f5-dbee905a78ef",
+    "penalty": "1000.00"
+  },
+  {
+    "timestamp": "2025-10-31T20:12:48.327503",
+    "service": "Customer Portal",
+    "agreement": "Customer Portal SLA",
+    "target_id": "725bb6d8-452d-4c01-a940-9942d5bf47df",
+    "severity": "AlertSeverity.BREACH",
+    "supplier_contract_id": "0aaa2a25-fdf8-4b41-b3d2-ee406d427260",
+    "penalty": "1000.00"
+  },
+  {
+    "timestamp": "2025-10-31T20:12:48.327503",
+    "service": "Customer Portal",
+    "agreement": "Customer Portal SLA",
+    "target_id": "add64ed0-dc15-4d28-8f71-2fa372130261",
+    "severity": "AlertSeverity.BREACH",
+    "supplier_contract_id": "0aaa2a25-fdf8-4b41-b3d2-ee406d427260",
+    "penalty": "1000.00"
+  },
+  {
+    "timestamp": "2025-10-31T20:19:04.081868",
+    "service": "Customer Portal",
+    "agreement": "Customer Portal SLA",
+    "target_id": "a82cbc97-99a9-4325-ae0f-9952cb737bd7",
+    "severity": "AlertSeverity.BREACH",
+    "supplier_contract_id": "4fa0becb-22b6-40de-b648-53bb1df7e1b7",
+    "penalty": "1000.00"
+  },
+  {
+    "timestamp": "2025-10-31T20:19:04.083855",
+    "service": "Customer Portal",
+    "agreement": "Customer Portal SLA",
+    "target_id": "a82cbc97-99a9-4325-ae0f-9952cb737bd7",
+    "severity": "AlertSeverity.BREACH",
+    "supplier_contract_id": "4fa0becb-22b6-40de-b648-53bb1df7e1b7",
+    "penalty": "1000.00"
+  },
+  {
+    "timestamp": "2025-10-31T20:19:04.093854",
+    "service": "Customer Portal",
+    "agreement": "Customer Portal SLA",
+    "target_id": "a82cbc97-99a9-4325-ae0f-9952cb737bd7",
+    "severity": "AlertSeverity.BREACH",
+    "supplier_contract_id": "4fa0becb-22b6-40de-b648-53bb1df7e1b7",
+    "penalty": "1000.00"
+  },
+  {
+    "timestamp": "2025-10-31T20:19:38.149954",
+    "service": "Customer Portal",
+    "agreement": "Customer Portal SLA",
+    "target_id": "a57e8ae5-d725-49f9-bbe1-d1a2542d8fc0",
+    "severity": "AlertSeverity.BREACH",
+    "supplier_contract_id": "e9760db3-93ef-4b85-a4a3-60e53ae6cb3a",
+    "penalty": "1000.00"
+  },
+  {
+    "timestamp": "2025-10-31T20:19:38.150995",
+    "service": "Customer Portal",
+    "agreement": "Customer Portal SLA",
+    "target_id": "a57e8ae5-d725-49f9-bbe1-d1a2542d8fc0",
+    "severity": "AlertSeverity.BREACH",
+    "supplier_contract_id": "e9760db3-93ef-4b85-a4a3-60e53ae6cb3a",
+    "penalty": "1000.00"
+  },
+  {
+    "timestamp": "2025-10-31T20:19:38.163357",
+    "service": "Customer Portal",
+    "agreement": "Customer Portal SLA",
+    "target_id": "5e8425fa-4e74-47b5-9d0e-ca161cb2b89b",
+    "severity": "AlertSeverity.BREACH",
+    "supplier_contract_id": "e9760db3-93ef-4b85-a4a3-60e53ae6cb3a",
+    "penalty": "1000.00"
+  },
+  {
+    "timestamp": "2025-10-31T20:19:38.172937",
+    "service": "Customer Portal",
+    "agreement": "Customer Portal SLA",
+    "target_id": "5e8425fa-4e74-47b5-9d0e-ca161cb2b89b",
+    "severity": "AlertSeverity.BREACH",
+    "supplier_contract_id": "e9760db3-93ef-4b85-a4a3-60e53ae6cb3a",
+    "penalty": "1000.00"
+  },
+  {
+    "timestamp": "2025-10-31T20:32:54.948897",
+    "service": "Customer Portal",
+    "agreement": "Customer Portal SLA",
+    "target_id": "13c79369-3894-44df-a8a1-04e60a4fbc62",
+    "severity": "AlertSeverity.BREACH",
+    "supplier_contract_id": "b3709d1d-30de-44ad-98cf-f3a70827efd5",
+    "penalty": "1000.00"
+  },
+  {
+    "timestamp": "2025-10-31T20:32:54.951538",
+    "service": "Customer Portal",
+    "agreement": "Customer Portal SLA",
+    "target_id": "13c79369-3894-44df-a8a1-04e60a4fbc62",
+    "severity": "AlertSeverity.BREACH",
+    "supplier_contract_id": "b3709d1d-30de-44ad-98cf-f3a70827efd5",
+    "penalty": "1000.00"
+  },
+  {
+    "timestamp": "2025-10-31T20:32:54.963486",
+    "service": "Customer Portal",
+    "agreement": "Customer Portal SLA",
+    "target_id": "13c79369-3894-44df-a8a1-04e60a4fbc62",
+    "severity": "AlertSeverity.BREACH",
+    "supplier_contract_id": "b3709d1d-30de-44ad-98cf-f3a70827efd5",
+    "penalty": "1000.00"
+  },
+  {
+    "timestamp": "2025-10-31T20:38:58.277042",
+    "service": "Customer Portal",
+    "agreement": "Customer Portal SLA",
+    "target_id": "e62884c3-3a4c-4fed-b75d-6dc6e9ba6c74",
+    "severity": "AlertSeverity.BREACH",
+    "supplier_contract_id": "7d57b196-2f61-4943-8469-8e8bbccf5180",
+    "penalty": "1000.00"
+  },
+  {
+    "timestamp": "2025-10-31T20:59:38.591300",
+    "service": "Customer Portal",
+    "agreement": "Customer Portal SLA",
+    "target_id": "c6ae74d5-6d62-4a47-a66d-f39dab8a3682",
+    "severity": "AlertSeverity.BREACH",
+    "supplier_contract_id": "09db5c33-b085-4b2a-af29-2802887bf0d6",
+    "penalty": "1000.00"
+  },
+  {
+    "timestamp": "2025-10-31T20:59:38.591300",
+    "service": "Customer Portal",
+    "agreement": "Customer Portal SLA",
+    "target_id": "c6ae74d5-6d62-4a47-a66d-f39dab8a3682",
+    "severity": "AlertSeverity.BREACH",
+    "supplier_contract_id": "09db5c33-b085-4b2a-af29-2802887bf0d6",
+    "penalty": "1000.00"
+  },
+  {
+    "timestamp": "2025-10-31T20:59:38.603072",
+    "service": "Customer Portal",
+    "agreement": "Customer Portal SLA",
+    "target_id": "aad44753-fcba-4367-9dd4-9f00f2e1a4af",
+    "severity": "AlertSeverity.BREACH",
+    "supplier_contract_id": "09db5c33-b085-4b2a-af29-2802887bf0d6",
+    "penalty": "1000.00"
+  },
+  {
+    "timestamp": "2025-10-31T20:59:38.616121",
+    "service": "Customer Portal",
+    "agreement": "Customer Portal SLA",
+    "target_id": "aad44753-fcba-4367-9dd4-9f00f2e1a4af",
+    "severity": "AlertSeverity.BREACH",
+    "supplier_contract_id": "09db5c33-b085-4b2a-af29-2802887bf0d6",
+    "penalty": "1000.00"
+  },
+  {
+    "timestamp": "2025-10-31T20:59:38.628581",
+    "service": "Customer Portal",
+    "agreement": "Customer Portal SLA",
+    "target_id": "aad44753-fcba-4367-9dd4-9f00f2e1a4af",
+    "severity": "AlertSeverity.BREACH",
+    "supplier_contract_id": "09db5c33-b085-4b2a-af29-2802887bf0d6",
+    "penalty": "1000.00"
+  },
+  {
+    "timestamp": "2025-10-31T21:07:32.620113",
+    "service": "Customer Portal",
+    "agreement": "Customer Portal SLA",
+    "target_id": "730dd8b4-09f4-433e-a72c-2f9fc75fae3d",
+    "severity": "AlertSeverity.BREACH",
+    "supplier_contract_id": "43622533-2357-4201-8d83-b7aa8375812f",
+    "penalty": "1000.00"
+  },
+  {
+    "timestamp": "2025-10-31T21:07:32.620113",
+    "service": "Customer Portal",
+    "agreement": "Customer Portal SLA",
+    "target_id": "730dd8b4-09f4-433e-a72c-2f9fc75fae3d",
+    "severity": "AlertSeverity.BREACH",
+    "supplier_contract_id": "43622533-2357-4201-8d83-b7aa8375812f",
+    "penalty": "1000.00"
+  },
+  {
+    "timestamp": "2025-10-31T21:07:32.643270",
+    "service": "Customer Portal",
+    "agreement": "Customer Portal SLA",
+    "target_id": "730dd8b4-09f4-433e-a72c-2f9fc75fae3d",
+    "severity": "AlertSeverity.BREACH",
+    "supplier_contract_id": "43622533-2357-4201-8d83-b7aa8375812f",
+    "penalty": "1000.00"
+  },
+  {
+    "timestamp": "2025-10-31T21:07:32.659686",
+    "service": "Customer Portal",
+    "agreement": "Customer Portal SLA",
+    "target_id": "42b2d491-f290-498a-9601-118bb97cbe16",
+    "severity": "AlertSeverity.BREACH",
+    "supplier_contract_id": "43622533-2357-4201-8d83-b7aa8375812f",
+    "penalty": "1000.00"
+  }
+]

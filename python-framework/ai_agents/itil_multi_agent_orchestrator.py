@@ -19,6 +19,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from integration.integration_manager import ITILIntegrationManager
 from integration.orchestrator import ITILOrchestrator
 from ai_agents import ITILAgentCrew, create_sample_incident
+from ai_agents.matis_task_executor import MatisTaskExecutor
 from core.branding import NAME as FRAMEWORK_NAME
 from integration.event_bus import EventBus
 from storage import json_store
@@ -50,6 +51,9 @@ class CollaborativeAgentsOrchestrator:
         # 4) Event bus for autonomous reactions
         self.bus = EventBus()
         self._register_event_handlers()
+
+        # 5) Matis Task Automation Executor for autonomous task execution
+        self.matis_executor = MatisTaskExecutor()
 
     def _register_event_handlers(self) -> None:
         # Security Analyst reacts to new incidents
@@ -165,6 +169,20 @@ class CollaborativeAgentsOrchestrator:
         print(f"SLA - Active: {sl['active_agreements']} | Avg: {sl['average_compliance']:.1f}% | Breaches: {sl['recent_breaches']}")
         fin = dash["financials"]
         print(f"Budget: ${fin['total_budget']} | Actual: ${fin['total_actual']} | Variance: ${fin['variance']}")
+
+        # D) Matis Task Automation Execution
+        print("\n🔧 Matis Task Force Automation")
+        if self.matis_executor.validate_matis_installation():
+            print("✅ Matis executor validated")
+            print("📋 Matis Task Automation Platform integrated successfully")
+            print("� Ready for intelligent autonomous IT task execution")
+            print("   - Agentless automation with SSH/WinRM transport")
+            print("   - Zero-dependency execution (no Python on targets)")
+            print("   - Type-safe configuration with YAML validation")
+            print("   - Concurrent execution with configurable thread pools")
+            print("   - Extensible plugin system for custom functionality")
+        else:
+            print("⚠️ Matis not available - skipping automated task execution")
 
         return {
             "timestamp": datetime.now().isoformat(),
